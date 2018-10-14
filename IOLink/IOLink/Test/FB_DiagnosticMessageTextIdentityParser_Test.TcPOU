@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="FB_DiagnosticMessageTextIdentityParser_Test" Id="{afb9ef9f-55d7-44d9-bf09-c8e509ec2f03}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'call_after_init'}
+FUNCTION_BLOCK FB_DiagnosticMessageTextIdentityParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
+VAR
+	_Assert : TcUnit.FB_Assert;
+
+    fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
+    nTextIdentity : UINT;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE TextIdentity#Low
+    cnTextIdentityBufferByte1_IdentityLow : BYTE := 16#00; // 0 = no text identity
+    cnTextIdentityBufferByte2_IdentityLow : BYTE := 16#00;
+    canTextIdentityBuffer_IdentityLow : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityLow,
+                                                                cnTextIdentityBufferByte2_IdentityLow];
+    // @TEST-RESULT TextIdentity#Low
+    cnTextIdentity_IdentityLow : UINT := 0;
+
+    // @TEST-FIXTURE TextIdentity#High
+    cnTextIdentityBufferByte1_IdentityHigh : BYTE := 16#FF; // 0xFFFF = 65535
+    cnTextIdentityBufferByte2_IdentityHigh : BYTE := 16#FF;
+    canTextIdentityBuffer_IdentityHigh : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityHigh,
+                                                                 cnTextIdentityBufferByte2_IdentityHigh];
+    // @TEST-RESULT TextIdentity#High
+    cnTextIdentity_IdentityHigh : UINT := 65535;
+
+    // @TEST-FIXTURE TextIdentity#Med
+    cnTextIdentityBufferByte1_IdentityMed : BYTE := 16#C4; // 0x86C4 = 34500
+    cnTextIdentityBufferByte2_IdentityMed : BYTE := 16#86;
+    canTextIdentityBuffer_IdentityMed : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityMed,
+                                                                cnTextIdentityBufferByte2_IdentityMed];
+    // @TEST-RESULT TextIdentity#Med
+    cnTextIdentity_IdentityMed : UINT := 34500;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{031ce907-b7dd-436a-a9ae-e315724d403a}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTests" Id="{cb8741bc-c2b9-44d6-bd34-f0278e604442}">
+      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestFunctionBlockRunState]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[WhenTextIdentityLowExpectTextIdentity0();
+WhenTextIdentityHighExpectTextIdentity65535();
+WhenTextIdentityMedExpectTextIdentity34500();
+
+RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WhenTextIdentityHighExpectTextIdentity65535" Id="{6ec38ca8-10ee-48ee-a072-1c11b09af03f}">
+      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityHighExpectTextIdentity65535]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('WhenTextIdentityHighExpectTextIdentity65535');
+
+// @TEST-RUN
+fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityHigh,
+                                      nTextIdentity => nTextIdentity);
+// @TEST-ASSERT
+_Assert.AssertEquals_UINT(cnTextIdentity_IdentityHigh, nTextIdentity,
+                              sMessage := 'Test $'TextIdentity#High$' failed');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WhenTextIdentityLowExpectTextIdentity0" Id="{359c46b6-b5ed-4f8b-ac1d-acb9de5e4a01}">
+      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityLowExpectTextIdentity0]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('WhenTextIdentityLowExpectTextIdentity0');
+
+// @TEST-RUN
+fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityLow,
+                                      nTextIdentity => nTextIdentity);
+// @TEST-ASSERT
+_Assert.AssertEquals_UINT(cnTextIdentity_IdentityLow, nTextIdentity,
+                              sMessage := 'Test $'TextIdentity#Low$' failed');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WhenTextIdentityMedExpectTextIdentity34500" Id="{e7a45d67-1c10-4366-b59b-9b4a8c1fb6b5}">
+      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityMedExpectTextIdentity34500]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('WhenTextIdentityMedExpectTextIdentity34500');
+
+// @TEST-RUN
+fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityMed,
+                                      nTextIdentity => nTextIdentity);
+// @TEST-ASSERT
+_Assert.AssertEquals_UINT(cnTextIdentity_IdentityMed, nTextIdentity,
+                              sMessage := 'Test $'TextIdentity#Med$' failed');]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.RunTests">
+      <LineId Id="4" Count="0" />
+      <LineId Id="7" Count="1" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.WhenTextIdentityHighExpectTextIdentity65535">
+      <LineId Id="12" Count="1" />
+      <LineId Id="6" Count="5" />
+    </LineIds>
+    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.WhenTextIdentityLowExpectTextIdentity0">
+      <LineId Id="12" Count="1" />
+      <LineId Id="6" Count="5" />
+    </LineIds>
+    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.WhenTextIdentityMedExpectTextIdentity34500">
+      <LineId Id="12" Count="1" />
+      <LineId Id="6" Count="5" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
