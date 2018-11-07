@@ -4,7 +4,7 @@
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK FB_DiagnosticMessageDiagnosticCodeParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
 VAR    
-    _Assert : TcUnit.FB_Assert;
+    fbAssert : TcUnit.FB_Assert;
 
     fbDiagnosticMessageDiagnosticCodeParser : FB_DiagnosticMessageDiagnosticCodeParser;
     stDiagnosticCode : ST_DIAGNOSTICCODE;
@@ -104,12 +104,12 @@ fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticC
                                         stDiagnosticCode => stDiagnosticCode);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_USINT(ceDiagnosticCodeType_EmergencyErrorCode,
-                           stDiagnosticCode.eDiagnosticCodeType,
-                           sMessage := 'Test $'emergency error code$' failed at $'diagnostic code type$'');
-_Assert.AssertEquals_UINT(cnDiagnosticCode_EmergencyErrorCode,
-                          stDiagnosticCode.nCode,
-                          sMessage := 'Test $'emergency error code$' failed at $'diagnostic code$'');]]></ST>
+fbAssert.AssertEquals_USINT(ceDiagnosticCodeType_EmergencyErrorCode,
+                            stDiagnosticCode.eDiagnosticCodeType,
+                            sMessage := 'Test $'emergency error code$' failed at $'diagnostic code type$'');
+fbAssert.AssertEquals_UINT(cnDiagnosticCode_EmergencyErrorCode,
+                           stDiagnosticCode.nCode,
+                           sMessage := 'Test $'emergency error code$' failed at $'diagnostic code$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenManufacturerSpecificExpectManufacturerSpecific" Id="{40ab6711-5cab-45d9-ba6e-ca6ced6c24ff}">
@@ -122,12 +122,12 @@ fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticC
                                         stDiagnosticCode => stDiagnosticCode);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_USINT(ceDiagnosticCodeType_ManufacturerSpecific,
-                               stDiagnosticCode.eDiagnosticCodeType,
-                               sMessage := 'Test $'manufacturer specific$' failed at $'diagnostic code type$'');
-_Assert.AssertEquals_UINT(cnDiagnosticCode_ManufacturerSpecific,
-                              stDiagnosticCode.nCode,
-                              sMessage := 'Test $'manufacturer specific$' failed at $'diagnostic code$'');]]></ST>
+fbAssert.AssertEquals_USINT(ceDiagnosticCodeType_ManufacturerSpecific,
+                            stDiagnosticCode.eDiagnosticCodeType,
+                            sMessage := 'Test $'manufacturer specific$' failed at $'diagnostic code type$'');
+fbAssert.AssertEquals_UINT(cnDiagnosticCode_ManufacturerSpecific,
+                           stDiagnosticCode.nCode,
+                           sMessage := 'Test $'manufacturer specific$' failed at $'diagnostic code$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenProfileSpecificExpectProfileSpecific" Id="{336dd021-2575-4a47-bd62-c8341eb05f8e}">
@@ -140,12 +140,12 @@ fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticC
                                         stDiagnosticCode => stDiagnosticCode);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_USINT(ceDiagnosticCodeType_ProfileSpecific,
-                               stDiagnosticCode.eDiagnosticCodeType,
-                               sMessage := 'Test $'profile specific$' failed at $'diagnostic code type$'');
-_Assert.AssertEquals_UINT(cnDiagnosticCode_ProfileSpecific,
-                              stDiagnosticCode.nCode,
-                              sMessage := 'Test $'profile specific$' failed at $'diagnostic code$'');]]></ST>
+fbAssert.AssertEquals_USINT(ceDiagnosticCodeType_ProfileSpecific,
+                            stDiagnosticCode.eDiagnosticCodeType,
+                            sMessage := 'Test $'profile specific$' failed at $'diagnostic code type$'');
+fbAssert.AssertEquals_UINT(cnDiagnosticCode_ProfileSpecific,
+                           stDiagnosticCode.nCode,
+                           sMessage := 'Test $'profile specific$' failed at $'diagnostic code$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenReservedForFutureUseExpectReservedForFutureUse" Id="{fd470e69-fbcd-4569-98f1-d6a8eb922c93}">
@@ -158,12 +158,12 @@ fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticC
                                         stDiagnosticCode => stDiagnosticCode);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_USINT(ceDiagnosticCodeType_ReservedForFutureUse,
-                               stDiagnosticCode.eDiagnosticCodeType,
-                               sMessage := 'Test $'reserved for future use$' failed at $'diagnostic code type$'');
-_Assert.AssertEquals_UINT(cnDiagnosticCode_ReservedForFutureUse,
-                              stDiagnosticCode.nCode,
-                              sMessage := 'Test $'reserved for future use$' failed at $'diagnostic code$'');]]></ST>
+fbAssert.AssertEquals_USINT(ceDiagnosticCodeType_ReservedForFutureUse,
+                            stDiagnosticCode.eDiagnosticCodeType,
+                            sMessage := 'Test $'reserved for future use$' failed at $'diagnostic code type$'');
+fbAssert.AssertEquals_UINT(cnDiagnosticCode_ReservedForFutureUse,
+                           stDiagnosticCode.nCode,
+                           sMessage := 'Test $'reserved for future use$' failed at $'diagnostic code$'');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_DiagnosticMessageDiagnosticCodeParser_Test">

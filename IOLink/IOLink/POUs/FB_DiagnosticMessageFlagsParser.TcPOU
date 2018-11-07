@@ -22,7 +22,8 @@ nFlags.2 := anFlagsBuffer[1].2;
 nFlags.3 := anFlagsBuffer[1].3;
 
 {analysis -34}
-IF nFlags >= 10#0 AND nFlags <= 10#2 THEN
+//IF nFlags >= 10#0 AND nFlags <= 10#2 THEN
+IF nFlags >= 10#1 AND nFlags <= 10#2 THEN
     stFlags.eDiagnosisType := nFlags;
 ELSE
     stFlags.eDiagnosisType := E_DIAGNOSISTYPE.Unspecified;
@@ -38,7 +39,9 @@ END_IF
 stFlags.nNumberOfParametersInDiagnosisMessage := BYTE_TO_USINT(anFlagsBuffer[2]);]]></ST>
     </Implementation>
     <LineIds Name="FB_DiagnosticMessageFlagsParser">
-      <LineId Id="25" Count="18" />
+      <LineId Id="25" Count="6" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="32" Count="11" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>

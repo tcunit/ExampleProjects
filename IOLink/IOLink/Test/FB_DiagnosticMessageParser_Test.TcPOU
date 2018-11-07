@@ -4,7 +4,7 @@
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK FB_DiagnosticMessageParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
 VAR
-	_Assert : TcUnit.FB_Assert;
+	fbAssert : TcUnit.FB_Assert;
    
     fbDiagnosticMessageParser : FB_DiagnosticMessageParser;
     aDiagnosticMessageBuffer : ARRAY[1..28] OF BYTE;
@@ -307,27 +307,27 @@ fbDiagnosticMessageParser(anDiagnosticMessageBuffer := canDiagnosticBuffer_Emerg
                           stDiagnosticMessage => stDiagnosticMessage);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_USINT(stDiagnosticMessage_EmergencyMessage.stDiagnosticCode.eDiagnosticCodeType,
-                               stDiagnosticMessage.stDiagnosticCode.eDiagnosticCodeType,
-                               sMessage := 'Test $'EmergencyMessage$' failed at $'Diagnostic code type$'');
-_Assert.AssertEquals_UINT(stDiagnosticMessage_EmergencyMessage.stDiagnosticCode.nCode,
-                              stDiagnosticMessage.stDiagnosticCode.nCode,
-                              sMessage := 'Test $'EmergencyMessage$' failed at $'Diagnostic code$'');
-_Assert.AssertEquals_BYTE(stDiagnosticMessage_EmergencyMessage.stFlags.eDiagnosisType,
-                              stDiagnosticMessage.stFlags.eDiagnosisType,
-                              sMessage := 'Test $'EmergencyMessage$' failed at $'Diagnosis type$'');
-_Assert.AssertEquals_USINT(stDiagnosticMessage_EmergencyMessage.stFlags.eTimeStampType,
-                               stDiagnosticMessage.stFlags.eTimeStampType,
-                               sMessage := 'Test $'EmergencyMessage$' failed at $'Timestamp type$'');
-_Assert.AssertEquals_USINT(stDiagnosticMessage_EmergencyMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
-                               stDiagnosticMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
-                               sMessage := 'Test $'EmergencyMessage$' failed at $'Numbers of parameters in diagnosis message$'');
-_Assert.AssertEquals_UINT(stDiagnosticMessage_EmergencyMessage.nTextIdentityReferenceToESIFile,
-                              stDiagnosticMessage.nTextIdentityReferenceToESIFile,
-                              sMessage := 'Test $'EmergencyMessage$' failed at $'Text identity reference to ESI file$'');
-_Assert.AssertEquals_STRING(stDiagnosticMessage_EmergencyMessage.sTimeStamp,
-                                stDiagnosticMessage.sTimeStamp,
-                                sMessage := 'Test $'EmergencyMessage$' failed at $'Timestamp$'');]]></ST>
+fbAssert.AssertEquals_USINT(stDiagnosticMessage_EmergencyMessage.stDiagnosticCode.eDiagnosticCodeType,
+                            stDiagnosticMessage.stDiagnosticCode.eDiagnosticCodeType,
+                            sMessage := 'Test $'EmergencyMessage$' failed at $'Diagnostic code type$'');
+fbAssert.AssertEquals_UINT(stDiagnosticMessage_EmergencyMessage.stDiagnosticCode.nCode,
+                           stDiagnosticMessage.stDiagnosticCode.nCode,
+                           sMessage := 'Test $'EmergencyMessage$' failed at $'Diagnostic code$'');
+fbAssert.AssertEquals_BYTE(stDiagnosticMessage_EmergencyMessage.stFlags.eDiagnosisType,
+                           stDiagnosticMessage.stFlags.eDiagnosisType,
+                           sMessage := 'Test $'EmergencyMessage$' failed at $'Diagnosis type$'');
+fbAssert.AssertEquals_USINT(stDiagnosticMessage_EmergencyMessage.stFlags.eTimeStampType,
+                            stDiagnosticMessage.stFlags.eTimeStampType,
+                            sMessage := 'Test $'EmergencyMessage$' failed at $'Timestamp type$'');
+fbAssert.AssertEquals_USINT(stDiagnosticMessage_EmergencyMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
+                            stDiagnosticMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
+                            sMessage := 'Test $'EmergencyMessage$' failed at $'Numbers of parameters in diagnosis message$'');
+fbAssert.AssertEquals_UINT(stDiagnosticMessage_EmergencyMessage.nTextIdentityReferenceToESIFile,
+                           stDiagnosticMessage.nTextIdentityReferenceToESIFile,
+                           sMessage := 'Test $'EmergencyMessage$' failed at $'Text identity reference to ESI file$'');
+fbAssert.AssertEquals_STRING(stDiagnosticMessage_EmergencyMessage.sTimeStamp,
+                             stDiagnosticMessage.sTimeStamp,
+                             sMessage := 'Test $'EmergencyMessage$' failed at $'Timestamp$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="TestWithManufacturerSpecificMessage" Id="{9b0a8d95-30fd-4585-870e-b3381dc8ff4a}">
@@ -340,27 +340,27 @@ fbDiagnosticMessageParser(anDiagnosticMessageBuffer := canDiagnosticBuffer_Manuf
                           stDiagnosticMessage => stDiagnosticMessage);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_USINT(cstDiagnosticMessage_ManufacturerSpecificMessage.stDiagnosticCode.eDiagnosticCodeType,
-                               stDiagnosticMessage.stDiagnosticCode.eDiagnosticCodeType,
-                               sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Diagnostic code type$'');
-_Assert.AssertEquals_UINT(cstDiagnosticMessage_ManufacturerSpecificMessage.stDiagnosticCode.nCode,
-                              stDiagnosticMessage.stDiagnosticCode.nCode,
-                              sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Diagnostic code$'');
-_Assert.AssertEquals_BYTE(cstDiagnosticMessage_ManufacturerSpecificMessage.stFlags.eDiagnosisType,
-                              stDiagnosticMessage.stFlags.eDiagnosisType,
-                              sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Diagnosis type$'');
-_Assert.AssertEquals_USINT(cstDiagnosticMessage_ManufacturerSpecificMessage.stFlags.eTimeStampType,
-                               stDiagnosticMessage.stFlags.eTimeStampType,
-                               sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Timestamp type$'');
-_Assert.AssertEquals_USINT(cstDiagnosticMessage_ManufacturerSpecificMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
-                               stDiagnosticMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
-                               sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Numbers of parameters in diagnosis message$'');
-_Assert.AssertEquals_UINT(cstDiagnosticMessage_ManufacturerSpecificMessage.nTextIdentityReferenceToESIFile,
-                              stDiagnosticMessage.nTextIdentityReferenceToESIFile,
-                              sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Text identity reference to ESI file$'');
-_Assert.AssertEquals_STRING(cstDiagnosticMessage_ManufacturerSpecificMessage.sTimeStamp,
-                                stDiagnosticMessage.sTimeStamp,
-                                sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Timestamp$'');]]></ST>
+fbAssert.AssertEquals_USINT(cstDiagnosticMessage_ManufacturerSpecificMessage.stDiagnosticCode.eDiagnosticCodeType,
+                            stDiagnosticMessage.stDiagnosticCode.eDiagnosticCodeType,
+                            sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Diagnostic code type$'');
+fbAssert.AssertEquals_UINT(cstDiagnosticMessage_ManufacturerSpecificMessage.stDiagnosticCode.nCode,
+                           stDiagnosticMessage.stDiagnosticCode.nCode,
+                           sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Diagnostic code$'');
+fbAssert.AssertEquals_BYTE(cstDiagnosticMessage_ManufacturerSpecificMessage.stFlags.eDiagnosisType,
+                           stDiagnosticMessage.stFlags.eDiagnosisType,
+                           sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Diagnosis type$'');
+fbAssert.AssertEquals_USINT(cstDiagnosticMessage_ManufacturerSpecificMessage.stFlags.eTimeStampType,
+                            stDiagnosticMessage.stFlags.eTimeStampType,
+                            sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Timestamp type$'');
+fbAssert.AssertEquals_USINT(cstDiagnosticMessage_ManufacturerSpecificMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
+                            stDiagnosticMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
+                            sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Numbers of parameters in diagnosis message$'');
+fbAssert.AssertEquals_UINT(cstDiagnosticMessage_ManufacturerSpecificMessage.nTextIdentityReferenceToESIFile,
+                           stDiagnosticMessage.nTextIdentityReferenceToESIFile,
+                           sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Text identity reference to ESI file$'');
+fbAssert.AssertEquals_STRING(cstDiagnosticMessage_ManufacturerSpecificMessage.sTimeStamp,
+                             stDiagnosticMessage.sTimeStamp,
+                             sMessage := 'Test $'ManufacturerSpecificMessage$' failed at $'Timestamp$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="TestWithUnspecifiedMessageMessage" Id="{0eba1671-4d4f-4c4d-9216-d84d1df8c475}">
@@ -374,27 +374,27 @@ fbDiagnosticMessageParser(anDiagnosticMessageBuffer := canDiagnosticBuffer_Unspe
                           stDiagnosticMessage => stDiagnosticMessage);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage.stDiagnosticCode.eDiagnosticCodeType,
-                               stDiagnosticMessage.stDiagnosticCode.eDiagnosticCodeType,
-                               sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Diagnostic code type$'');
-_Assert.AssertEquals_UINT(cstDiagnosticMessage_UnspecifiedMessage.stDiagnosticCode.nCode,
-                              stDiagnosticMessage.stDiagnosticCode.nCode,
-                              sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Diagnostic code$'');
-_Assert.AssertEquals_BYTE(cstDiagnosticMessage_UnspecifiedMessage.stFlags.eDiagnosisType,
-                              stDiagnosticMessage.stFlags.eDiagnosisType,
-                              sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Diagnosis type$'');
-_Assert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage.stFlags.eTimeStampType,
-                               stDiagnosticMessage.stFlags.eTimeStampType,
-                               sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Timestamp type$'');
-_Assert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
-                               stDiagnosticMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
-                               sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Numbers of parameters in diagnosis message$'');
-_Assert.AssertEquals_UINT(cstDiagnosticMessage_UnspecifiedMessage.nTextIdentityReferenceToESIFile,
-                              stDiagnosticMessage.nTextIdentityReferenceToESIFile,
-                              sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Text identity reference to ESI file$'');
-_Assert.AssertEquals_STRING(cstDiagnosticMessage_UnspecifiedMessage.sTimeStamp,
-                                stDiagnosticMessage.sTimeStamp,
-                                sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Timestamp$'');]]></ST>
+fbAssert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage.stDiagnosticCode.eDiagnosticCodeType,
+                            stDiagnosticMessage.stDiagnosticCode.eDiagnosticCodeType,
+                            sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Diagnostic code type$'');
+fbAssert.AssertEquals_UINT(cstDiagnosticMessage_UnspecifiedMessage.stDiagnosticCode.nCode,
+                           stDiagnosticMessage.stDiagnosticCode.nCode,
+                           sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Diagnostic code$'');
+fbAssert.AssertEquals_BYTE(cstDiagnosticMessage_UnspecifiedMessage.stFlags.eDiagnosisType,
+                           stDiagnosticMessage.stFlags.eDiagnosisType,
+                           sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Diagnosis type$'');
+fbAssert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage.stFlags.eTimeStampType,
+                            stDiagnosticMessage.stFlags.eTimeStampType,
+                            sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Timestamp type$'');
+fbAssert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
+                            stDiagnosticMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
+                            sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Numbers of parameters in diagnosis message$'');
+fbAssert.AssertEquals_UINT(cstDiagnosticMessage_UnspecifiedMessage.nTextIdentityReferenceToESIFile,
+                           stDiagnosticMessage.nTextIdentityReferenceToESIFile,
+                           sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Text identity reference to ESI file$'');
+fbAssert.AssertEquals_STRING(cstDiagnosticMessage_UnspecifiedMessage.sTimeStamp,
+                             stDiagnosticMessage.sTimeStamp,
+                             sMessage := 'Test $'UnspecifiedMessageMessage$' failed at $'Timestamp$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="TestWithUnspecifiedMessageMessage_ParameterVariant" Id="{68dc4d92-46b0-45dd-a828-e6a3317c80fd}">
@@ -407,27 +407,27 @@ fbDiagnosticMessageParser(anDiagnosticMessageBuffer := canDiagnosticBuffer_Unspe
                           stDiagnosticMessage => stDiagnosticMessage);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stDiagnosticCode.eDiagnosticCodeType,
-                               stDiagnosticMessage.stDiagnosticCode.eDiagnosticCodeType,
-                               sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Diagnostic code type$'');
-_Assert.AssertEquals_UINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stDiagnosticCode.nCode,
-                              stDiagnosticMessage.stDiagnosticCode.nCode,
-                              sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Diagnostic code$'');
-_Assert.AssertEquals_BYTE(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stFlags.eDiagnosisType,
-                              stDiagnosticMessage.stFlags.eDiagnosisType,
-                              sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Diagnosis type$'');
-_Assert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stFlags.eTimeStampType,
-                               stDiagnosticMessage.stFlags.eTimeStampType,
-                               sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Timestamp type$'');
-_Assert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stFlags.nNumberOfParametersInDiagnosisMessage,
-                               stDiagnosticMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
-                               sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Numbers of parameters in diagnosis message$'');
-_Assert.AssertEquals_UINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.nTextIdentityReferenceToESIFile,
+fbAssert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stDiagnosticCode.eDiagnosticCodeType,
+                            stDiagnosticMessage.stDiagnosticCode.eDiagnosticCodeType,
+                            sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Diagnostic code type$'');
+fbAssert.AssertEquals_UINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stDiagnosticCode.nCode,
+                           stDiagnosticMessage.stDiagnosticCode.nCode,
+                           sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Diagnostic code$'');
+fbAssert.AssertEquals_BYTE(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stFlags.eDiagnosisType,
+                           stDiagnosticMessage.stFlags.eDiagnosisType,
+                           sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Diagnosis type$'');
+fbAssert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stFlags.eTimeStampType,
+                            stDiagnosticMessage.stFlags.eTimeStampType,
+                            sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Timestamp type$'');
+fbAssert.AssertEquals_USINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.stFlags.nNumberOfParametersInDiagnosisMessage,
+                            stDiagnosticMessage.stFlags.nNumberOfParametersInDiagnosisMessage,
+                            sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Numbers of parameters in diagnosis message$'');
+fbAssert.AssertEquals_UINT(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.nTextIdentityReferenceToESIFile,
                               stDiagnosticMessage.nTextIdentityReferenceToESIFile,
                               sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Text identity reference to ESI file$'');
-_Assert.AssertEquals_STRING(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.sTimeStamp,
-                                stDiagnosticMessage.sTimeStamp,
-                                sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Timestamp$'');]]></ST>
+fbAssert.AssertEquals_STRING(cstDiagnosticMessage_UnspecifiedMessage_ParameterVariant.sTimeStamp,
+                             stDiagnosticMessage.sTimeStamp,
+                             sMessage := 'Test $'UnspecifiedMessageMessage_ParameterVariant$' failed at $'Timestamp$'');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_DiagnosticMessageParser_Test">

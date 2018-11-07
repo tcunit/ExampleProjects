@@ -4,7 +4,7 @@
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK FB_DiagnosticMessageFlagsParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
 VAR
-	_Assert : TcUnit.FB_Assert;
+	fbAssert : TcUnit.FB_Assert;
 
     fbDiagnosticMessageFlagsParser : FB_DiagnosticMessageFlagsParser;
     stFlags : ST_FLAGS;
@@ -83,12 +83,12 @@ fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_ErrorMessage,
                                stFlags => stFlags);
 
 // @TEST-ASSERT ErrorMessage
-_Assert.AssertEquals_BYTE(ceFlags_DiagnosisTypeErrorMessage, stFlags.eDiagnosisType,
-                              'Test $'Error message$' failed at $'diagnosis type$'');
-_Assert.AssertEquals_USINT(ceFlags_TimeStampTypeLocal, stFlags.eTimeStampType,
-                              'Test $'Error message$' failed at $'timestamp type$'');
-_Assert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageFour, stFlags.nNumberOfParametersInDiagnosisMessage,
-                              'Test $'Error message$' failed at $'number of parameters$'');]]></ST>
+fbAssert.AssertEquals_BYTE(ceFlags_DiagnosisTypeErrorMessage, stFlags.eDiagnosisType,
+                           'Test $'Error message$' failed at $'diagnosis type$'');
+fbAssert.AssertEquals_USINT(ceFlags_TimeStampTypeLocal, stFlags.eTimeStampType,
+                            'Test $'Error message$' failed at $'timestamp type$'');
+fbAssert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageFour, stFlags.nNumberOfParametersInDiagnosisMessage,
+                            'Test $'Error message$' failed at $'number of parameters$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters" Id="{bb46ac41-02ed-40ed-a816-83fb6980e06d}">
@@ -101,12 +101,12 @@ fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_InfoMessage,
                                stFlags => stFlags);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_BYTE(ceFlags_DiagnosisTypeInfoMessage, stFlags.eDiagnosisType,
-                              'Test $'Info message$' failed at $'diagnosis type$'');
-_Assert.AssertEquals_USINT(ceFlags_TimeStampTypeGlobal, stFlags.eTimeStampType,
-                              'Test $'Info message$' failed at $'timestamp type$'');
-_Assert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageZero, stFlags.nNumberOfParametersInDiagnosisMessage,
-                              'Test $'Info message$' failed at $'number of parameters$'');]]></ST>
+fbAssert.AssertEquals_BYTE(ceFlags_DiagnosisTypeInfoMessage, stFlags.eDiagnosisType,
+                           'Test $'Info message$' failed at $'diagnosis type$'');
+fbAssert.AssertEquals_USINT(ceFlags_TimeStampTypeGlobal, stFlags.eTimeStampType,
+                           'Test $'Info message$' failed at $'timestamp type$'');
+fbAssert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageZero, stFlags.nNumberOfParametersInDiagnosisMessage,
+                           'Test $'Info message$' failed at $'number of parameters$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters" Id="{6be770b4-b74f-46a4-964f-1c71e63b7446}">
@@ -119,12 +119,12 @@ fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_ReservedForFuture
                                stFlags => stFlags);
 
 // @TEST-ASSERT ReservedForFutureUseMessage
-_Assert.AssertEquals_BYTE(ceFlags_DiagnosisTypeReservedForFutureUseMessage, stFlags.eDiagnosisType,
-                              'Test $'Reserved for future use message$' failed at $'diagnosis type$'');
-_Assert.AssertEquals_USINT(ceFlags_TimeStampTypeLocal, stFlags.eTimeStampType,
-                              'Test $'Reserved for future use message$' failed at $'timestamp type$'');
-_Assert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessage33, stFlags.nNumberOfParametersInDiagnosisMessage,
-                              'Test $'Reserved for future use message$' failed at $'number of parameters$'');]]></ST>
+fbAssert.AssertEquals_BYTE(ceFlags_DiagnosisTypeReservedForFutureUseMessage, stFlags.eDiagnosisType,
+                           'Test $'Reserved for future use message$' failed at $'diagnosis type$'');
+fbAssert.AssertEquals_USINT(ceFlags_TimeStampTypeLocal, stFlags.eTimeStampType,
+                            'Test $'Reserved for future use message$' failed at $'timestamp type$'');
+fbAssert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessage33, stFlags.nNumberOfParametersInDiagnosisMessage,
+                            'Test $'Reserved for future use message$' failed at $'number of parameters$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters" Id="{da79b77f-b650-455b-a807-dff9ec60e1b5}">
@@ -137,12 +137,12 @@ fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_WarningMessage,
                                stFlags => stFlags);
 
 // @TEST-ASSERT WarningMessage
-_Assert.AssertEquals_BYTE(ceFlags_DiagnosisTypeWarningMessage, stFlags.eDiagnosisType,
-                              'Test $'Warning message$' failed at $'diagnosis type$'');
-_Assert.AssertEquals_USINT(ceFlags_TimeStampTypeLocal, stFlags.eTimeStampType,
-                              'Test $'Warning message$' failed at $'timestamp type$'');
-_Assert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageTwo, stFlags.nNumberOfParametersInDiagnosisMessage,
-                              'Test $'Warning message$' failed at $'number of parameters$'');]]></ST>
+fbAssert.AssertEquals_BYTE(ceFlags_DiagnosisTypeWarningMessage, stFlags.eDiagnosisType,
+                           'Test $'Warning message$' failed at $'diagnosis type$'');
+fbAssert.AssertEquals_USINT(ceFlags_TimeStampTypeLocal, stFlags.eTimeStampType,
+                            'Test $'Warning message$' failed at $'timestamp type$'');
+fbAssert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageTwo, stFlags.nNumberOfParametersInDiagnosisMessage,
+                            'Test $'Warning message$' failed at $'number of parameters$'');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_DiagnosticMessageFlagsParser_Test">

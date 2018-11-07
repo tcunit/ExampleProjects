@@ -4,7 +4,7 @@
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK FB_DiagnosticMessageTimeStampParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
 VAR
-    _Assert : TcUnit.FB_Assert;
+    fbAssert : TcUnit.FB_Assert;
 
     fbDiagnosticMessageTimeStampParser : FB_DiagnosticMessageTimeStampParser;
     sTimeStamp : STRING(29);
@@ -65,9 +65,9 @@ RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
 fbDiagnosticMessageTimeStampParser(anTimeStampBuffer := canTimeStampBuffer_TimeStampZeroTime,
                                    sTimeStamp => sTimeStamp);
 // @TEST-ASSERT
-_Assert.AssertEquals_STRING(DCTIME64_TO_STRING(in := F_GetCurDcTaskTime64()),
-                                sTimeStamp,
-                                sMessage := 'Test $'TimeStamp zero time$' failed');]]></ST>
+fbAssert.AssertEquals_STRING(DCTIME64_TO_STRING(in := F_GetCurDcTaskTime64()),
+                             sTimeStamp,
+                             sMessage := 'Test $'TimeStamp zero time$' failed');]]></ST>
       </Implementation>
     </Method>
     <Method Name="TestWithValidTimestampExpectSameTimestamp" Id="{530657c4-9ad6-4099-a1b4-0698aa007d77}">
@@ -80,9 +80,9 @@ fbDiagnosticMessageTimeStampParser(anTimeStampBuffer := canTimeStampBuffer_TimeS
                                    sTimeStamp => sTimeStamp);
 
 // @TEST-ASSERT
-_Assert.AssertEquals_STRING(csTimeStamp_TimeStampValidTime,
-                                sTimeStamp,
-                                sMessage := 'Test $'TimeStamp zero time$' failed');]]></ST>
+fbAssert.AssertEquals_STRING(csTimeStamp_TimeStampValidTime,
+                             sTimeStamp,
+                             sMessage := 'Test $'TimeStamp zero time$' failed');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_DiagnosticMessageTimeStampParser_Test">

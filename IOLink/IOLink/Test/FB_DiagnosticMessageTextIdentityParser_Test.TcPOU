@@ -4,7 +4,7 @@
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK FB_DiagnosticMessageTextIdentityParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
 VAR
-	_Assert : TcUnit.FB_Assert;
+	fbAssert : TcUnit.FB_Assert;
 
     fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
     nTextIdentity : UINT;
@@ -67,8 +67,8 @@ RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
 fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityHigh,
                                       nTextIdentity => nTextIdentity);
 // @TEST-ASSERT
-_Assert.AssertEquals_UINT(cnTextIdentity_IdentityHigh, nTextIdentity,
-                              sMessage := 'Test $'TextIdentity#High$' failed');]]></ST>
+fbAssert.AssertEquals_UINT(cnTextIdentity_IdentityHigh, nTextIdentity,
+                           sMessage := 'Test $'TextIdentity#High$' failed');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenTextIdentityLowExpectTextIdentity0" Id="{359c46b6-b5ed-4f8b-ac1d-acb9de5e4a01}">
@@ -80,8 +80,8 @@ _Assert.AssertEquals_UINT(cnTextIdentity_IdentityHigh, nTextIdentity,
 fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityLow,
                                       nTextIdentity => nTextIdentity);
 // @TEST-ASSERT
-_Assert.AssertEquals_UINT(cnTextIdentity_IdentityLow, nTextIdentity,
-                              sMessage := 'Test $'TextIdentity#Low$' failed');]]></ST>
+fbAssert.AssertEquals_UINT(cnTextIdentity_IdentityLow, nTextIdentity,
+                           sMessage := 'Test $'TextIdentity#Low$' failed');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenTextIdentityMedExpectTextIdentity34500" Id="{e7a45d67-1c10-4366-b59b-9b4a8c1fb6b5}">
@@ -93,8 +93,8 @@ _Assert.AssertEquals_UINT(cnTextIdentity_IdentityLow, nTextIdentity,
 fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityMed,
                                       nTextIdentity => nTextIdentity);
 // @TEST-ASSERT
-_Assert.AssertEquals_UINT(cnTextIdentity_IdentityMed, nTextIdentity,
-                              sMessage := 'Test $'TextIdentity#Med$' failed');]]></ST>
+fbAssert.AssertEquals_UINT(cnTextIdentity_IdentityMed, nTextIdentity,
+                           sMessage := 'Test $'TextIdentity#Med$' failed');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test">
