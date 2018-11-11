@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="FB_Sum_Test" Id="{69b661ca-5faa-43bb-8b8a-2cae13b2cfe4}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'call_after_init'}
+FUNCTION_BLOCK FB_Sum_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
+VAR
+	Assert : TcUnit.FB_Assert;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{053aa1ab-2377-4f3d-852f-5268553eaca8}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTests" Id="{a311ace9-aa3c-426d-9885-bce7260e159e}">
+      <Declaration><![CDATA[METHOD RunTests : TCUNIT.E_TestFunctionBlockRunState
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TwoPlusTwoEqualsFour();
+ZeroPlusZeroEqualsZero();
+
+RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TwoPlusTwoEqualsFour" Id="{071ba4c3-fe0d-4b0b-be72-a320c9d403a4}">
+      <Declaration><![CDATA[METHOD PRIVATE TwoPlusTwoEqualsFour
+VAR
+	fbSum : FB_Sum;
+	nResult : UINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TwoPlusTwoEqualsFour');
+
+fbSum(one := 2, two := 2, result => nResult);
+
+Assert.AssertEquals_UINT(nExpected := 4,
+                         nActual := nResult,
+                         sMessage := 'The calculation is not correct');
+SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ZeroPlusZeroEqualsZero" Id="{ac47aa92-0e7a-4876-b0ac-7ef29219d372}">
+      <Declaration><![CDATA[METHOD PRIVATE ZeroPlusZeroEqualsZero
+VAR
+	fbSum : FB_Sum;
+	nResult : UINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('ZeroPlusZeroEqualsZero');
+
+fbSum(one := 0, two := 0, result => nResult);
+
+Assert.AssertEquals_UINT(nExpected := 0,
+                         nActual := nResult,
+                         sMessage := 'The calculation is not correct');
+SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Sum_Test">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Sum_Test.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Sum_Test.RunTests">
+      <LineId Id="4" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Sum_Test.TwoPlusTwoEqualsFour">
+      <LineId Id="27" Count="6" />
+      <LineId Id="13" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Sum_Test.ZeroPlusZeroEqualsZero">
+      <LineId Id="20" Count="6" />
+      <LineId Id="13" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
