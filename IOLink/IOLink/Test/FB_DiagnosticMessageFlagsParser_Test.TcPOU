@@ -4,49 +4,7 @@
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK FB_DiagnosticMessageFlagsParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
 VAR
-	fbAssert : TcUnit.FB_Assert;
-
-    fbDiagnosticMessageFlagsParser : FB_DiagnosticMessageFlagsParser;
-    stFlags : ST_FLAGS;
-END_VAR
-VAR CONSTANT
-    // @TEST-FIXTURE InfoMessage
-    cnFlagsBufferByte1_InfoMessage : BYTE := 2#0000_0000; // Info message and global time stamp
-    cnFlagsBufferByte2_InfoMessage : BYTE := 2#0000_0000; // Zero parameters in the diagnosis message
-    canFlagsBuffer_InfoMessage : ARRAY[1..2] OF BYTE := [cnFlagsBufferByte1_InfoMessage, 
-                                                         cnFlagsBufferByte2_InfoMessage];
-    // @TEST-RESULT InfoMessage
-    ceFlags_DiagnosisTypeInfoMessage : E_DIAGNOSISTYPE := E_DIAGNOSISTYPE.InfoMessage;
-    ceFlags_TimeStampTypeGlobal : E_TIMESTAMPTYPE := E_TIMESTAMPTYPE.Global;
-    cnFlags_NumberOfParametersInDiagnosisMessageZero : USINT := 0;
-
-    // @TEST-FIXTURE WarningMessage
-    cnFlagsBufferByte1_WarningMessage : BYTE := 2#0001_0001; // Warning message and local time stamp
-    cnFlagsBufferByte2_WarningMessage : BYTE := 2#0000_0010; // Two parameters in the diagnosis message
-    canFlagsBuffer_WarningMessage : ARRAY[1..2] OF BYTE := [cnFlagsBufferByte1_WarningMessage, 
-                                                            cnFlagsBufferByte2_WarningMessage];
-    // @TEST-RESULT WarningMessage
-    ceFlags_DiagnosisTypeWarningMessage : E_DIAGNOSISTYPE := E_DIAGNOSISTYPE.WarningMessage;
-    ceFlags_TimeStampTypeLocal : E_TIMESTAMPTYPE := E_TIMESTAMPTYPE.Local;
-    cnFlags_NumberOfParametersInDiagnosisMessageTwo : USINT := 2;
-
-     // @TEST-FIXTURE ErrorMessage
-    cnFlagsBufferByte1_ErrorMessage : BYTE := 2#0001_0010; // Error message and local time stamp
-    cnFlagsBufferByte2_ErrorMessage : BYTE := 2#0000_0100; // Four parameters in the diagnosis message
-    canFlagsBuffer_ErrorMessage : ARRAY[1..2] OF BYTE := [cnFlagsBufferByte1_ErrorMessage, 
-                                                          cnFlagsBufferByte2_ErrorMessage];
-    // @TEST-RESULT ErrorMessage
-    ceFlags_DiagnosisTypeErrorMessage : E_DIAGNOSISTYPE := E_DIAGNOSISTYPE.ErrorMessage;
-    cnFlags_NumberOfParametersInDiagnosisMessageFour : USINT := 4;
-
-    // @TEST-FIXTURE ReservedForFutureUseMessage
-    cnFlagsBufferByte1_ReservedForFutureUseMessage : BYTE := 2#0001_0011; // ReservedForFutureUse message and local time stamp
-    cnFlagsBufferByte2_ReservedForFutureUseMessage : BYTE := 2#0010_0001; // 33 parameters in the diagnosis message
-    canFlagsBuffer_ReservedForFutureUseMessage : ARRAY[1..2] OF BYTE := [cnFlagsBufferByte1_ReservedForFutureUseMessage, 
-                                                                         cnFlagsBufferByte2_ReservedForFutureUseMessage];
-    // @TEST-RESULT ReservedForFutureUseMessage
-    ceFlags_DiagnosisTypeReservedForFutureUseMessage : E_DIAGNOSISTYPE := E_DIAGNOSISTYPE.Unspecified;
-    cnFlags_NumberOfParametersInDiagnosisMessage33 : USINT := 33;
+    fbAssert : TcUnit.FB_Assert;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -74,7 +32,22 @@ RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters" Id="{9a9c4539-6094-4180-9da4-a22f03bc41c6}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters
+VAR
+    fbDiagnosticMessageFlagsParser : FB_DiagnosticMessageFlagsParser;
+    stFlags : ST_FLAGS;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE ErrorMessage
+    cnFlagsBufferByte1_ErrorMessage : BYTE := 2#0001_0010; // Error message and local time stamp
+    cnFlagsBufferByte2_ErrorMessage : BYTE := 2#0000_0100; // Four parameters in the diagnosis message
+    canFlagsBuffer_ErrorMessage : ARRAY[1..2] OF BYTE := [cnFlagsBufferByte1_ErrorMessage, 
+                                                          cnFlagsBufferByte2_ErrorMessage];
+    // @TEST-RESULT ErrorMessage
+    ceFlags_DiagnosisTypeErrorMessage : E_DIAGNOSISTYPE := E_DIAGNOSISTYPE.ErrorMessage;
+	ceFlags_TimeStampTypeLocal : E_TIMESTAMPTYPE := E_TIMESTAMPTYPE.Local;
+    cnFlags_NumberOfParametersInDiagnosisMessageFour : USINT := 4;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters');
 
@@ -83,16 +56,34 @@ fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_ErrorMessage,
                                stFlags => stFlags);
 
 // @TEST-ASSERT ErrorMessage
-fbAssert.AssertEquals_BYTE(ceFlags_DiagnosisTypeErrorMessage, stFlags.eDiagnosisType,
+fbAssert.AssertEquals_BYTE(Expected := ceFlags_DiagnosisTypeErrorMessage,
+                           Actual := stFlags.eDiagnosisType,
                            'Test $'Error message$' failed at $'diagnosis type$'');
-fbAssert.AssertEquals_USINT(ceFlags_TimeStampTypeLocal, stFlags.eTimeStampType,
+fbAssert.AssertEquals_USINT(Expected := ceFlags_TimeStampTypeLocal,
+                            Actual := stFlags.eTimeStampType,
                             'Test $'Error message$' failed at $'timestamp type$'');
-fbAssert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageFour, stFlags.nNumberOfParametersInDiagnosisMessage,
+fbAssert.AssertEquals_USINT(Expected := cnFlags_NumberOfParametersInDiagnosisMessageFour,
+                            Actual := stFlags.nNumberOfParametersInDiagnosisMessage,
                             'Test $'Error message$' failed at $'number of parameters$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters" Id="{bb46ac41-02ed-40ed-a816-83fb6980e06d}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters
+VAR
+	fbDiagnosticMessageFlagsParser : FB_DiagnosticMessageFlagsParser;
+    stFlags : ST_FLAGS;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE InfoMessage
+    cnFlagsBufferByte1_InfoMessage : BYTE := 2#0000_0000; // Info message and global time stamp
+    cnFlagsBufferByte2_InfoMessage : BYTE := 2#0000_0000; // Zero parameters in the diagnosis message
+    canFlagsBuffer_InfoMessage : ARRAY[1..2] OF BYTE := [cnFlagsBufferByte1_InfoMessage, 
+                                                         cnFlagsBufferByte2_InfoMessage];
+    // @TEST-RESULT InfoMessage
+    ceFlags_DiagnosisTypeInfoMessage : E_DIAGNOSISTYPE := E_DIAGNOSISTYPE.InfoMessage;
+    ceFlags_TimeStampTypeGlobal : E_TIMESTAMPTYPE := E_TIMESTAMPTYPE.Global;
+    cnFlags_NumberOfParametersInDiagnosisMessageZero : USINT := 0;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters');
 
@@ -101,16 +92,34 @@ fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_InfoMessage,
                                stFlags => stFlags);
 
 // @TEST-ASSERT
-fbAssert.AssertEquals_BYTE(ceFlags_DiagnosisTypeInfoMessage, stFlags.eDiagnosisType,
+fbAssert.AssertEquals_BYTE(Expected := ceFlags_DiagnosisTypeInfoMessage,
+                           Actual := stFlags.eDiagnosisType,
                            'Test $'Info message$' failed at $'diagnosis type$'');
-fbAssert.AssertEquals_USINT(ceFlags_TimeStampTypeGlobal, stFlags.eTimeStampType,
+fbAssert.AssertEquals_USINT(Expected := ceFlags_TimeStampTypeGlobal,
+                            Actual := stFlags.eTimeStampType,
                            'Test $'Info message$' failed at $'timestamp type$'');
-fbAssert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageZero, stFlags.nNumberOfParametersInDiagnosisMessage,
+fbAssert.AssertEquals_USINT(Expected := cnFlags_NumberOfParametersInDiagnosisMessageZero,
+							Actual := stFlags.nNumberOfParametersInDiagnosisMessage,
                            'Test $'Info message$' failed at $'number of parameters$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters" Id="{6be770b4-b74f-46a4-964f-1c71e63b7446}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters
+VAR
+    fbDiagnosticMessageFlagsParser : FB_DiagnosticMessageFlagsParser;
+    stFlags : ST_FLAGS;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE ReservedForFutureUseMessage
+    cnFlagsBufferByte1_ReservedForFutureUseMessage : BYTE := 2#0001_0011; // ReservedForFutureUse message and local time stamp
+    cnFlagsBufferByte2_ReservedForFutureUseMessage : BYTE := 2#0010_0001; // 33 parameters in the diagnosis message
+    canFlagsBuffer_ReservedForFutureUseMessage : ARRAY[1..2] OF BYTE := [cnFlagsBufferByte1_ReservedForFutureUseMessage, 
+                                                                         cnFlagsBufferByte2_ReservedForFutureUseMessage];
+    // @TEST-RESULT ReservedForFutureUseMessage
+    ceFlags_DiagnosisTypeReservedForFutureUseMessage : E_DIAGNOSISTYPE := E_DIAGNOSISTYPE.Unspecified;
+    cnFlags_NumberOfParametersInDiagnosisMessage33 : USINT := 33;
+    ceFlags_TimeStampTypeLocal : E_TIMESTAMPTYPE := E_TIMESTAMPTYPE.Local;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters');
 
@@ -119,16 +128,34 @@ fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_ReservedForFuture
                                stFlags => stFlags);
 
 // @TEST-ASSERT ReservedForFutureUseMessage
-fbAssert.AssertEquals_BYTE(ceFlags_DiagnosisTypeReservedForFutureUseMessage, stFlags.eDiagnosisType,
+fbAssert.AssertEquals_BYTE(Expected := ceFlags_DiagnosisTypeReservedForFutureUseMessage,
+                           Actual := stFlags.eDiagnosisType,
                            'Test $'Reserved for future use message$' failed at $'diagnosis type$'');
-fbAssert.AssertEquals_USINT(ceFlags_TimeStampTypeLocal, stFlags.eTimeStampType,
+fbAssert.AssertEquals_USINT(Expected := ceFlags_TimeStampTypeLocal,
+                            Actual := stFlags.eTimeStampType,
                             'Test $'Reserved for future use message$' failed at $'timestamp type$'');
-fbAssert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessage33, stFlags.nNumberOfParametersInDiagnosisMessage,
+fbAssert.AssertEquals_USINT(Expected := cnFlags_NumberOfParametersInDiagnosisMessage33,
+                            Actual := stFlags.nNumberOfParametersInDiagnosisMessage,
                             'Test $'Reserved for future use message$' failed at $'number of parameters$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters" Id="{da79b77f-b650-455b-a807-dff9ec60e1b5}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters
+VAR
+    fbDiagnosticMessageFlagsParser : FB_DiagnosticMessageFlagsParser;
+    stFlags : ST_FLAGS;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE WarningMessage
+    cnFlagsBufferByte1_WarningMessage : BYTE := 2#0001_0001; // Warning message and local time stamp
+    cnFlagsBufferByte2_WarningMessage : BYTE := 2#0000_0010; // Two parameters in the diagnosis message
+    canFlagsBuffer_WarningMessage : ARRAY[1..2] OF BYTE := [cnFlagsBufferByte1_WarningMessage, 
+                                                            cnFlagsBufferByte2_WarningMessage];
+    // @TEST-RESULT WarningMessage
+    ceFlags_DiagnosisTypeWarningMessage : E_DIAGNOSISTYPE := E_DIAGNOSISTYPE.WarningMessage;
+    ceFlags_TimeStampTypeLocal : E_TIMESTAMPTYPE := E_TIMESTAMPTYPE.Local;
+    cnFlags_NumberOfParametersInDiagnosisMessageTwo : USINT := 2;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters');
 
@@ -137,11 +164,14 @@ fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_WarningMessage,
                                stFlags => stFlags);
 
 // @TEST-ASSERT WarningMessage
-fbAssert.AssertEquals_BYTE(ceFlags_DiagnosisTypeWarningMessage, stFlags.eDiagnosisType,
+fbAssert.AssertEquals_BYTE(Expected := ceFlags_DiagnosisTypeWarningMessage,
+                           Actual := stFlags.eDiagnosisType,
                            'Test $'Warning message$' failed at $'diagnosis type$'');
-fbAssert.AssertEquals_USINT(ceFlags_TimeStampTypeLocal, stFlags.eTimeStampType,
+fbAssert.AssertEquals_USINT(Expected := ceFlags_TimeStampTypeLocal,
+                            Actual := stFlags.eTimeStampType,
                             'Test $'Warning message$' failed at $'timestamp type$'');
-fbAssert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageTwo, stFlags.nNumberOfParametersInDiagnosisMessage,
+fbAssert.AssertEquals_USINT(Expected := cnFlags_NumberOfParametersInDiagnosisMessageTwo,
+                            Actual := stFlags.nNumberOfParametersInDiagnosisMessage,
                             'Test $'Warning message$' failed at $'number of parameters$'');]]></ST>
       </Implementation>
     </Method>
@@ -158,22 +188,42 @@ fbAssert.AssertEquals_USINT(cnFlags_NumberOfParametersInDiagnosisMessageTwo, stF
     </LineIds>
     <LineIds Name="FB_DiagnosticMessageFlagsParser_Test.WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters">
       <LineId Id="36" Count="1" />
-      <LineId Id="26" Count="9" />
+      <LineId Id="26" Count="5" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="32" Count="1" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="55" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_DiagnosticMessageFlagsParser_Test.WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters">
       <LineId Id="16" Count="1" />
-      <LineId Id="6" Count="9" />
+      <LineId Id="6" Count="5" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="34" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_DiagnosticMessageFlagsParser_Test.WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters">
       <LineId Id="49" Count="1" />
-      <LineId Id="39" Count="9" />
+      <LineId Id="39" Count="5" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="45" Count="1" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="47" Count="1" />
+      <LineId Id="68" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="FB_DiagnosticMessageFlagsParser_Test.WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters">
       <LineId Id="26" Count="1" />
-      <LineId Id="16" Count="9" />
+      <LineId Id="16" Count="5" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="22" Count="1" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="45" Count="0" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

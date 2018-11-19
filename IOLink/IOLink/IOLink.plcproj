@@ -13,6 +13,13 @@
     <Implicit_KindOfTask>{40fe2af0-c5ef-4a44-a6b3-b64a5c4b2758}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{e65eb08b-98d6-4de0-a66b-2cf4dbd7bc37}</Implicit_Jitter_Distribution>
     <LibraryReferences>{99df31fa-5957-45dd-bb6e-6f41b5af30eb}</LibraryReferences>
+    <CombineIds>false</CombineIds>
+    <Released>true</Released>
+    <Company>www.tcunit.org</Company>
+    <Title>TcUnit</Title>
+    <ProjectVersion>1.0.0.0</ProjectVersion>
+    <Author>Jakob Sagatowski</Author>
+    <Description>This library is a demonstration of the TcUnit framework, which is a TwinCAT unit testing framework. It implements certain parts of the IO-Link functionality. IO-Link is a serial communication protocol for end devices such as various types of sensors (temperature, pressure, etc) and actuators. The functionality implemented in this library is related to the "diagnosis" part of IO-Link, which in EtherCAT masters is implemented using the diagnosis history object defined in the ETG1020 specification.</Description>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\E_DIAGNOSISTYPE.TcDUT">
@@ -102,6 +109,10 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
+    <PlaceholderReference Include="TcUnit">
+      <DefaultResolution>TcUnit, * (www.tcunit.org)</DefaultResolution>
+      <Namespace>TcUnit</Namespace>
+    </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="IOLink.tmc">
@@ -109,9 +120,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <LibraryReference Include="TcUnit,0.0.1.0,www.tcunit.org">
-      <Namespace>TcUnit</Namespace>
-    </LibraryReference>
+    <PlaceholderResolution Include="TcUnit">
+      <Resolution>TcUnit, * (www.tcunit.org)</Resolution>
+    </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

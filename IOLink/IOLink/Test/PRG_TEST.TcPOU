@@ -6,7 +6,7 @@ DESCRIPTION: This is the main program for execution of the unit tests.
 *)
 PROGRAM PRG_TEST
 VAR	
-	(* Test function blocks *)
+    (* Test function blocks *)
     fbDiagnosticMessageDiagnosticCodeParser_Test : FB_DiagnosticMessageDiagnosticCodeParser_Test;
     fbDiagnosticMessageFlagsParser_Test : FB_DiagnosticMessageFlagsParser_Test;
     fbDiagnosticMessageParser_Test : FB_DiagnosticMessageParser_Test;

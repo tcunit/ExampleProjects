@@ -3,71 +3,8 @@
   <POU Name="FB_DiagnosticMessageDiagnosticCodeParser_Test" Id="{64146728-6fd6-498c-ab86-3eb3314b4608}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK FB_DiagnosticMessageDiagnosticCodeParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
-VAR    
+VAR
     fbAssert : TcUnit.FB_Assert;
-
-    fbDiagnosticMessageDiagnosticCodeParser : FB_DiagnosticMessageDiagnosticCodeParser;
-    stDiagnosticCode : ST_DIAGNOSTICCODE;
-END_VAR
-VAR CONSTANT
-    // @TEST-FIXTURE EmergencyErrorCode
-    cnDiagnosticCodeBufferByte1_EmergencyErrorCode : BYTE := 16#00; // 16#E800
-    cnDiagnosticCodeBufferByte2_EmergencyErrorCode : BYTE := 16#E8;
-    cnDiagnosticCodeBufferByte3_EmergencyErrorCode : BYTE := 16#30; // 16#7530 = 10#30000
-    cnDiagnosticCodeBufferByte4_EmergencyErrorCode : BYTE := 16#75;
-    canDiagnosticCodeBuffer_EmergencyErrorCode : ARRAY[1..4] OF BYTE := [
-                                                cnDiagnosticCodeBufferByte1_EmergencyErrorCode,
-                                                cnDiagnosticCodeBufferByte2_EmergencyErrorCode,
-                                                cnDiagnosticCodeBufferByte3_EmergencyErrorCode,
-                                                cnDiagnosticCodeBufferByte4_EmergencyErrorCode];
-    // @TEST-RESULT EmergencyErrorCode
-    ceDiagnosticCodeType_EmergencyErrorCode : E_DIAGNOSTICCODETYPE := E_DIAGNOSTICCODETYPE.EmergencyErrorCodeDS301;
-    cnDiagnosticCode_EmergencyErrorCode : UINT := 10#30000;
-
-    // @TEST-FIXTURE ManuFacturerSpecific
-    cnDiagnosticCodeBufferByte1_ManufacturerSpecific : BYTE := 16#00; // 16#E000 (in range of 0xE000 - 0xE7FF)
-    cnDiagnosticCodeBufferByte2_ManufacturerSpecific : BYTE := 16#E0;
-    cnDiagnosticCodeBufferByte3_ManufacturerSpecific : BYTE := 16#E8; // 16#03E8 = 10#1000
-    cnDiagnosticCodeBufferByte4_ManufacturerSpecific : BYTE := 16#03;
-    canDiagnosticCodeBuffer_ManufacturerSpecific : ARRAY[1..4] OF BYTE := [
-                                                cnDiagnosticCodeBufferByte1_ManufacturerSpecific,
-                                                cnDiagnosticCodeBufferByte2_ManufacturerSpecific,
-                                                cnDiagnosticCodeBufferByte3_ManufacturerSpecific,
-                                                cnDiagnosticCodeBufferByte4_ManufacturerSpecific];
-                                                
-    // @TEST-RESULT ManuFacturerSpecific
-    ceDiagnosticCodeType_ManufacturerSpecific : E_DIAGNOSTICCODETYPE := E_DIAGNOSTICCODETYPE.ManufacturerSpecific;
-    cnDiagnosticCode_ManufacturerSpecific : UINT := 10#1000;
-    
-    // @TEST-FIXTURE ProfileSpecific
-    cnDiagnosticCodeBufferByte1_ProfileSpecific : BYTE := 16#10; // 16#EF10 (in range of 0xEE00 - 0xEFFF)
-    cnDiagnosticCodeBufferByte2_ProfileSpecific : BYTE := 16#EF;
-    cnDiagnosticCodeBufferByte3_ProfileSpecific : BYTE := 16#FF; // 16#FFFF = 10#65535
-    cnDiagnosticCodeBufferByte4_ProfileSpecific : BYTE := 16#FF;
-    canDiagnosticCodeBuffer_ProfileSpecific : ARRAY[1..4] OF BYTE := [
-                                                cnDiagnosticCodeBufferByte1_ProfileSpecific,
-                                                cnDiagnosticCodeBufferByte2_ProfileSpecific,
-                                                cnDiagnosticCodeBufferByte3_ProfileSpecific,
-                                                cnDiagnosticCodeBufferByte4_ProfileSpecific];
-
-    // @TEST-RESULT ProfileSpecific
-    ceDiagnosticCodeType_ProfileSpecific : E_DIAGNOSTICCODETYPE := E_DIAGNOSTICCODETYPE.ProfileSpecific;
-    cnDiagnosticCode_ProfileSpecific : UINT := 10#65535;
-
-    // @TEST-FIXTURE ReservedForFutureUse
-    cnDiagnosticCodeBufferByte1_ReservedForFutureUse : BYTE := 16#01; // 16#E801 (in range of 0xE801 - 0xEDFF)
-    cnDiagnosticCodeBufferByte2_ReservedForFutureUse : BYTE := 16#E8;
-    cnDiagnosticCodeBufferByte3_ReservedForFutureUse : BYTE := 16#D9; // 16#3BD9 = 10#15321
-    cnDiagnosticCodeBufferByte4_ReservedForFutureUse : BYTE := 16#3B;
-    canDiagnosticCodeBuffer_ReservedForFutureUse : ARRAY[1..4] OF BYTE := [
-                                                cnDiagnosticCodeBufferByte1_ReservedForFutureUse,
-                                                cnDiagnosticCodeBufferByte2_ReservedForFutureUse,
-                                                cnDiagnosticCodeBufferByte3_ReservedForFutureUse,
-                                                cnDiagnosticCodeBufferByte4_ReservedForFutureUse];
-
-    // @TEST-RESULT ReservedForFutureUse
-    ceDiagnosticCodeType_ReservedForFutureUse : E_DIAGNOSTICCODETYPE := E_DIAGNOSTICCODETYPE.Unspecified;
-    cnDiagnosticCode_ReservedForFutureUse : UINT := 10#15321;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -95,7 +32,26 @@ RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenEmergencyErrorCodeExpectEmergencyErrorCode" Id="{11e83834-3403-4afa-90e6-bf62eb856126}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenEmergencyErrorCodeExpectEmergencyErrorCode]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenEmergencyErrorCodeExpectEmergencyErrorCode
+VAR
+    fbDiagnosticMessageDiagnosticCodeParser : FB_DiagnosticMessageDiagnosticCodeParser;
+    stDiagnosticCode : ST_DIAGNOSTICCODE;
+END_VAR
+VAR CONSTANT
+	// @TEST-FIXTURE EmergencyErrorCode
+    cnDiagnosticCodeBufferByte1_EmergencyErrorCode : BYTE := 16#00; // 16#E800
+    cnDiagnosticCodeBufferByte2_EmergencyErrorCode : BYTE := 16#E8;
+    cnDiagnosticCodeBufferByte3_EmergencyErrorCode : BYTE := 16#30; // 16#7530 = 10#30000
+    cnDiagnosticCodeBufferByte4_EmergencyErrorCode : BYTE := 16#75;
+    canDiagnosticCodeBuffer_EmergencyErrorCode : ARRAY[1..4] OF BYTE := [
+                                                cnDiagnosticCodeBufferByte1_EmergencyErrorCode,
+                                                cnDiagnosticCodeBufferByte2_EmergencyErrorCode,
+                                                cnDiagnosticCodeBufferByte3_EmergencyErrorCode,
+                                                cnDiagnosticCodeBufferByte4_EmergencyErrorCode];
+    // @TEST-RESULT EmergencyErrorCode
+    ceDiagnosticCodeType_EmergencyErrorCode : E_DIAGNOSTICCODETYPE := E_DIAGNOSTICCODETYPE.EmergencyErrorCodeDS301;
+    cnDiagnosticCode_EmergencyErrorCode : UINT := 10#30000;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenEmergencyErrorCodeExpectEmergencyErrorCode');
 
@@ -104,16 +60,36 @@ fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticC
                                         stDiagnosticCode => stDiagnosticCode);
 
 // @TEST-ASSERT
-fbAssert.AssertEquals_USINT(ceDiagnosticCodeType_EmergencyErrorCode,
-                            stDiagnosticCode.eDiagnosticCodeType,
-                            sMessage := 'Test $'emergency error code$' failed at $'diagnostic code type$'');
-fbAssert.AssertEquals_UINT(cnDiagnosticCode_EmergencyErrorCode,
-                           stDiagnosticCode.nCode,
-                           sMessage := 'Test $'emergency error code$' failed at $'diagnostic code$'');]]></ST>
+fbAssert.AssertEquals_USINT(Expected := ceDiagnosticCodeType_EmergencyErrorCode,
+                            Actual := stDiagnosticCode.eDiagnosticCodeType,
+                            Message := 'Test $'emergency error code$' failed at $'diagnostic code type$'');
+fbAssert.AssertEquals_UINT(Expected := cnDiagnosticCode_EmergencyErrorCode,
+                           Actual := stDiagnosticCode.nCode,
+                           Message := 'Test $'emergency error code$' failed at $'diagnostic code$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenManufacturerSpecificExpectManufacturerSpecific" Id="{40ab6711-5cab-45d9-ba6e-ca6ced6c24ff}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenManufacturerSpecificExpectManufacturerSpecific]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenManufacturerSpecificExpectManufacturerSpecific
+VAR
+    fbDiagnosticMessageDiagnosticCodeParser : FB_DiagnosticMessageDiagnosticCodeParser;
+    stDiagnosticCode : ST_DIAGNOSTICCODE;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE ManuFacturerSpecific
+    cnDiagnosticCodeBufferByte1_ManufacturerSpecific : BYTE := 16#00; // 16#E000 (in range of 0xE000 - 0xE7FF)
+    cnDiagnosticCodeBufferByte2_ManufacturerSpecific : BYTE := 16#E0;
+    cnDiagnosticCodeBufferByte3_ManufacturerSpecific : BYTE := 16#E8; // 16#03E8 = 10#1000
+    cnDiagnosticCodeBufferByte4_ManufacturerSpecific : BYTE := 16#03;
+    canDiagnosticCodeBuffer_ManufacturerSpecific : ARRAY[1..4] OF BYTE := [
+                                                cnDiagnosticCodeBufferByte1_ManufacturerSpecific,
+                                                cnDiagnosticCodeBufferByte2_ManufacturerSpecific,
+                                                cnDiagnosticCodeBufferByte3_ManufacturerSpecific,
+                                                cnDiagnosticCodeBufferByte4_ManufacturerSpecific];
+                                                
+    // @TEST-RESULT ManuFacturerSpecific
+    ceDiagnosticCodeType_ManufacturerSpecific : E_DIAGNOSTICCODETYPE := E_DIAGNOSTICCODETYPE.ManufacturerSpecific;
+    cnDiagnosticCode_ManufacturerSpecific : UINT := 10#1000;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenManufacturerSpecificExpectManufacturerSpecific');
 
@@ -122,16 +98,36 @@ fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticC
                                         stDiagnosticCode => stDiagnosticCode);
 
 // @TEST-ASSERT
-fbAssert.AssertEquals_USINT(ceDiagnosticCodeType_ManufacturerSpecific,
-                            stDiagnosticCode.eDiagnosticCodeType,
-                            sMessage := 'Test $'manufacturer specific$' failed at $'diagnostic code type$'');
-fbAssert.AssertEquals_UINT(cnDiagnosticCode_ManufacturerSpecific,
-                           stDiagnosticCode.nCode,
-                           sMessage := 'Test $'manufacturer specific$' failed at $'diagnostic code$'');]]></ST>
+fbAssert.AssertEquals_USINT(Expected := ceDiagnosticCodeType_ManufacturerSpecific,
+                            Actual := stDiagnosticCode.eDiagnosticCodeType,
+                            Message := 'Test $'manufacturer specific$' failed at $'diagnostic code type$'');
+fbAssert.AssertEquals_UINT(Expected := cnDiagnosticCode_ManufacturerSpecific,
+                           Actual := stDiagnosticCode.nCode,
+                           Message := 'Test $'manufacturer specific$' failed at $'diagnostic code$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenProfileSpecificExpectProfileSpecific" Id="{336dd021-2575-4a47-bd62-c8341eb05f8e}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenProfileSpecificExpectProfileSpecific]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenProfileSpecificExpectProfileSpecific
+VAR
+    fbDiagnosticMessageDiagnosticCodeParser : FB_DiagnosticMessageDiagnosticCodeParser;
+    stDiagnosticCode : ST_DIAGNOSTICCODE;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE ProfileSpecific
+    cnDiagnosticCodeBufferByte1_ProfileSpecific : BYTE := 16#10; // 16#EF10 (in range of 0xEE00 - 0xEFFF)
+    cnDiagnosticCodeBufferByte2_ProfileSpecific : BYTE := 16#EF;
+    cnDiagnosticCodeBufferByte3_ProfileSpecific : BYTE := 16#FF; // 16#FFFF = 10#65535
+    cnDiagnosticCodeBufferByte4_ProfileSpecific : BYTE := 16#FF;
+    canDiagnosticCodeBuffer_ProfileSpecific : ARRAY[1..4] OF BYTE := [
+                                                cnDiagnosticCodeBufferByte1_ProfileSpecific,
+                                                cnDiagnosticCodeBufferByte2_ProfileSpecific,
+                                                cnDiagnosticCodeBufferByte3_ProfileSpecific,
+                                                cnDiagnosticCodeBufferByte4_ProfileSpecific];
+
+    // @TEST-RESULT ProfileSpecific
+    ceDiagnosticCodeType_ProfileSpecific : E_DIAGNOSTICCODETYPE := E_DIAGNOSTICCODETYPE.ProfileSpecific;
+    cnDiagnosticCode_ProfileSpecific : UINT := 10#65535;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenProfileSpecificExpectProfileSpecific');
 
@@ -140,16 +136,36 @@ fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticC
                                         stDiagnosticCode => stDiagnosticCode);
 
 // @TEST-ASSERT
-fbAssert.AssertEquals_USINT(ceDiagnosticCodeType_ProfileSpecific,
-                            stDiagnosticCode.eDiagnosticCodeType,
-                            sMessage := 'Test $'profile specific$' failed at $'diagnostic code type$'');
-fbAssert.AssertEquals_UINT(cnDiagnosticCode_ProfileSpecific,
-                           stDiagnosticCode.nCode,
-                           sMessage := 'Test $'profile specific$' failed at $'diagnostic code$'');]]></ST>
+fbAssert.AssertEquals_USINT(Expected := ceDiagnosticCodeType_ProfileSpecific,
+                            Actual := stDiagnosticCode.eDiagnosticCodeType,
+                            Message := 'Test $'profile specific$' failed at $'diagnostic code type$'');
+fbAssert.AssertEquals_UINT(Expected := cnDiagnosticCode_ProfileSpecific,
+                           Actual := stDiagnosticCode.nCode,
+                           Message := 'Test $'profile specific$' failed at $'diagnostic code$'');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenReservedForFutureUseExpectReservedForFutureUse" Id="{fd470e69-fbcd-4569-98f1-d6a8eb922c93}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenReservedForFutureUseExpectReservedForFutureUse]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenReservedForFutureUseExpectReservedForFutureUse
+VAR
+    fbDiagnosticMessageDiagnosticCodeParser : FB_DiagnosticMessageDiagnosticCodeParser;
+    stDiagnosticCode : ST_DIAGNOSTICCODE;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE ReservedForFutureUse
+    cnDiagnosticCodeBufferByte1_ReservedForFutureUse : BYTE := 16#01; // 16#E801 (in range of 0xE801 - 0xEDFF)
+    cnDiagnosticCodeBufferByte2_ReservedForFutureUse : BYTE := 16#E8;
+    cnDiagnosticCodeBufferByte3_ReservedForFutureUse : BYTE := 16#D9; // 16#3BD9 = 10#15321
+    cnDiagnosticCodeBufferByte4_ReservedForFutureUse : BYTE := 16#3B;
+    canDiagnosticCodeBuffer_ReservedForFutureUse : ARRAY[1..4] OF BYTE := [
+                                                cnDiagnosticCodeBufferByte1_ReservedForFutureUse,
+                                                cnDiagnosticCodeBufferByte2_ReservedForFutureUse,
+                                                cnDiagnosticCodeBufferByte3_ReservedForFutureUse,
+                                                cnDiagnosticCodeBufferByte4_ReservedForFutureUse];
+
+    // @TEST-RESULT ReservedForFutureUse
+    ceDiagnosticCodeType_ReservedForFutureUse : E_DIAGNOSTICCODETYPE := E_DIAGNOSTICCODETYPE.Unspecified;
+    cnDiagnosticCode_ReservedForFutureUse : UINT := 10#15321;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenReservedForFutureUseExpectReservedForFutureUse');
 
@@ -158,12 +174,12 @@ fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticC
                                         stDiagnosticCode => stDiagnosticCode);
 
 // @TEST-ASSERT
-fbAssert.AssertEquals_USINT(ceDiagnosticCodeType_ReservedForFutureUse,
-                            stDiagnosticCode.eDiagnosticCodeType,
-                            sMessage := 'Test $'reserved for future use$' failed at $'diagnostic code type$'');
-fbAssert.AssertEquals_UINT(cnDiagnosticCode_ReservedForFutureUse,
-                           stDiagnosticCode.nCode,
-                           sMessage := 'Test $'reserved for future use$' failed at $'diagnostic code$'');]]></ST>
+fbAssert.AssertEquals_USINT(Expected := ceDiagnosticCodeType_ReservedForFutureUse,
+                            Actual := stDiagnosticCode.eDiagnosticCodeType,
+                            Message := 'Test $'reserved for future use$' failed at $'diagnostic code type$'');
+fbAssert.AssertEquals_UINT(Expected := cnDiagnosticCode_ReservedForFutureUse,
+                           Actual := stDiagnosticCode.nCode,
+                           Message := 'Test $'reserved for future use$' failed at $'diagnostic code$'');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_DiagnosticMessageDiagnosticCodeParser_Test">

@@ -5,33 +5,6 @@
 FUNCTION_BLOCK FB_DiagnosticMessageTimeStampParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
 VAR
     fbAssert : TcUnit.FB_Assert;
-
-    fbDiagnosticMessageTimeStampParser : FB_DiagnosticMessageTimeStampParser;
-    sTimeStamp : STRING(29);
-END_VAR
-VAR CONSTANT
-    // @TEST-FIXTURE time stamp zero time
-    canTimeStampBuffer_TimeStampZeroTime : ARRAY[1..8] OF BYTE := [8(16#00)];
-
-    // @TEST-FIXTURE TimeStamp valid time
-    cnTimeStampBufferByte1_TimeStampValidTime : BYTE := 16#C0; // 0x07C76560A71025C0 = '2017-10-05-14:15:44.425035200'
-    cnTimeStampBufferByte2_TimeStampValidTime : BYTE := 16#25;
-    cnTimeStampBufferByte3_TimeStampValidTime : BYTE := 16#10;
-    cnTimeStampBufferByte4_TimeStampValidTime : BYTE := 16#A7;
-    cnTimeStampBufferByte5_TimeStampValidTime : BYTE := 16#60;
-    cnTimeStampBufferByte6_TimeStampValidTime : BYTE := 16#65;
-    cnTimeStampBufferByte7_TimeStampValidTime : BYTE := 16#C7;
-    cnTimeStampBufferByte8_TimeStampValidTime : BYTE := 16#07;
-    canTimeStampBuffer_TimeStampValidTime : ARRAY[1..8] OF BYTE := [cnTimeStampBufferByte1_TimeStampValidTime,
-                                                                    cnTimeStampBufferByte2_TimeStampValidTime,
-                                                                    cnTimeStampBufferByte3_TimeStampValidTime,
-                                                                    cnTimeStampBufferByte4_TimeStampValidTime,
-                                                                    cnTimeStampBufferByte5_TimeStampValidTime,
-                                                                    cnTimeStampBufferByte6_TimeStampValidTime,
-                                                                    cnTimeStampBufferByte7_TimeStampValidTime,
-                                                                    cnTimeStampBufferByte8_TimeStampValidTime];
-    // @TEST-RESULT TimeStamp valid time
-    csTimeStamp_TimeStampValidTime : STRING(29) := '2017-10-05-14:15:44.425035200'; // T_DCTime64 = 16#07C76560A71025C0
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -57,7 +30,15 @@ RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TestWithTimestampZeroTimeExpectCurrentTime" Id="{af4b04e8-f73a-4e70-a822-caa6f9030a5f}">
-      <Declaration><![CDATA[METHOD PRIVATE TestWithTimestampZeroTimeExpectCurrentTime]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE TestWithTimestampZeroTimeExpectCurrentTime
+VAR
+    fbDiagnosticMessageTimeStampParser : FB_DiagnosticMessageTimeStampParser;
+    sTimeStamp : STRING(29);
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE time stamp zero time
+    canTimeStampBuffer_TimeStampZeroTime : ARRAY[1..8] OF BYTE := [8(16#00)];
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestWithTimestampZeroTimeExpectCurrentTime');
 
@@ -65,13 +46,38 @@ RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
 fbDiagnosticMessageTimeStampParser(anTimeStampBuffer := canTimeStampBuffer_TimeStampZeroTime,
                                    sTimeStamp => sTimeStamp);
 // @TEST-ASSERT
-fbAssert.AssertEquals_STRING(DCTIME64_TO_STRING(in := F_GetCurDcTaskTime64()),
-                             sTimeStamp,
-                             sMessage := 'Test $'TimeStamp zero time$' failed');]]></ST>
+fbAssert.AssertEquals_STRING(Expected := DCTIME64_TO_STRING(in := F_GetCurDcTaskTime64()),
+                             Actual := sTimeStamp,
+                             Message := 'Test $'TimeStamp zero time$' failed');]]></ST>
       </Implementation>
     </Method>
     <Method Name="TestWithValidTimestampExpectSameTimestamp" Id="{530657c4-9ad6-4099-a1b4-0698aa007d77}">
-      <Declaration><![CDATA[METHOD PRIVATE TestWithValidTimestampExpectSameTimestamp]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE TestWithValidTimestampExpectSameTimestamp
+VAR
+    fbDiagnosticMessageTimeStampParser : FB_DiagnosticMessageTimeStampParser;
+    sTimeStamp : STRING(29);
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE TimeStamp valid time
+    cnTimeStampBufferByte1_TimeStampValidTime : BYTE := 16#C0; // 0x07C76560A71025C0 = '2017-10-05-14:15:44.425035200'
+    cnTimeStampBufferByte2_TimeStampValidTime : BYTE := 16#25;
+    cnTimeStampBufferByte3_TimeStampValidTime : BYTE := 16#10;
+    cnTimeStampBufferByte4_TimeStampValidTime : BYTE := 16#A7;
+    cnTimeStampBufferByte5_TimeStampValidTime : BYTE := 16#60;
+    cnTimeStampBufferByte6_TimeStampValidTime : BYTE := 16#65;
+    cnTimeStampBufferByte7_TimeStampValidTime : BYTE := 16#C7;
+    cnTimeStampBufferByte8_TimeStampValidTime : BYTE := 16#07;
+    canTimeStampBuffer_TimeStampValidTime : ARRAY[1..8] OF BYTE := [cnTimeStampBufferByte1_TimeStampValidTime,
+                                                                    cnTimeStampBufferByte2_TimeStampValidTime,
+                                                                    cnTimeStampBufferByte3_TimeStampValidTime,
+                                                                    cnTimeStampBufferByte4_TimeStampValidTime,
+                                                                    cnTimeStampBufferByte5_TimeStampValidTime,
+                                                                    cnTimeStampBufferByte6_TimeStampValidTime,
+                                                                    cnTimeStampBufferByte7_TimeStampValidTime,
+                                                                    cnTimeStampBufferByte8_TimeStampValidTime];
+    // @TEST-RESULT TimeStamp valid time
+    csTimeStamp_TimeStampValidTime : STRING(29) := '2017-10-05-14:15:44.425035200'; // T_DCTime64 = 16#07C76560A71025C0
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TestWithValidTimestampExpectSameTimestamp');
 
@@ -80,9 +86,9 @@ fbDiagnosticMessageTimeStampParser(anTimeStampBuffer := canTimeStampBuffer_TimeS
                                    sTimeStamp => sTimeStamp);
 
 // @TEST-ASSERT
-fbAssert.AssertEquals_STRING(csTimeStamp_TimeStampValidTime,
-                             sTimeStamp,
-                             sMessage := 'Test $'TimeStamp zero time$' failed');]]></ST>
+fbAssert.AssertEquals_STRING(Expected := csTimeStamp_TimeStampValidTime,
+                             Actual := sTimeStamp,
+                             Message := 'Test $'TimeStamp zero time$' failed');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_DiagnosticMessageTimeStampParser_Test">

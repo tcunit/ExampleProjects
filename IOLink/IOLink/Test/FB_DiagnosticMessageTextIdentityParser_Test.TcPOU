@@ -4,35 +4,7 @@
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK FB_DiagnosticMessageTextIdentityParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
 VAR
-	fbAssert : TcUnit.FB_Assert;
-
-    fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
-    nTextIdentity : UINT;
-END_VAR
-VAR CONSTANT
-    // @TEST-FIXTURE TextIdentity#Low
-    cnTextIdentityBufferByte1_IdentityLow : BYTE := 16#00; // 0 = no text identity
-    cnTextIdentityBufferByte2_IdentityLow : BYTE := 16#00;
-    canTextIdentityBuffer_IdentityLow : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityLow,
-                                                                cnTextIdentityBufferByte2_IdentityLow];
-    // @TEST-RESULT TextIdentity#Low
-    cnTextIdentity_IdentityLow : UINT := 0;
-
-    // @TEST-FIXTURE TextIdentity#High
-    cnTextIdentityBufferByte1_IdentityHigh : BYTE := 16#FF; // 0xFFFF = 65535
-    cnTextIdentityBufferByte2_IdentityHigh : BYTE := 16#FF;
-    canTextIdentityBuffer_IdentityHigh : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityHigh,
-                                                                 cnTextIdentityBufferByte2_IdentityHigh];
-    // @TEST-RESULT TextIdentity#High
-    cnTextIdentity_IdentityHigh : UINT := 65535;
-
-    // @TEST-FIXTURE TextIdentity#Med
-    cnTextIdentityBufferByte1_IdentityMed : BYTE := 16#C4; // 0x86C4 = 34500
-    cnTextIdentityBufferByte2_IdentityMed : BYTE := 16#86;
-    canTextIdentityBuffer_IdentityMed : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityMed,
-                                                                cnTextIdentityBufferByte2_IdentityMed];
-    // @TEST-RESULT TextIdentity#Med
-    cnTextIdentity_IdentityMed : UINT := 34500;
+    fbAssert : TcUnit.FB_Assert;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -59,7 +31,20 @@ RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenTextIdentityHighExpectTextIdentity65535" Id="{6ec38ca8-10ee-48ee-a072-1c11b09af03f}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityHighExpectTextIdentity65535]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityHighExpectTextIdentity65535
+VAR
+    fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
+    nTextIdentity : UINT;
+END_VAR
+VAR CONSTANT
+	// @TEST-FIXTURE TextIdentity#High
+    cnTextIdentityBufferByte1_IdentityHigh : BYTE := 16#FF; // 0xFFFF = 65535
+    cnTextIdentityBufferByte2_IdentityHigh : BYTE := 16#FF;
+    canTextIdentityBuffer_IdentityHigh : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityHigh,
+                                                                 cnTextIdentityBufferByte2_IdentityHigh];
+    // @TEST-RESULT TextIdentity#High
+    cnTextIdentity_IdentityHigh : UINT := 65535;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenTextIdentityHighExpectTextIdentity65535');
 
@@ -67,12 +52,26 @@ RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
 fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityHigh,
                                       nTextIdentity => nTextIdentity);
 // @TEST-ASSERT
-fbAssert.AssertEquals_UINT(cnTextIdentity_IdentityHigh, nTextIdentity,
-                           sMessage := 'Test $'TextIdentity#High$' failed');]]></ST>
+fbAssert.AssertEquals_UINT(Expected := cnTextIdentity_IdentityHigh,
+                           Actual := nTextIdentity,
+                           Message := 'Test $'TextIdentity#High$' failed');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenTextIdentityLowExpectTextIdentity0" Id="{359c46b6-b5ed-4f8b-ac1d-acb9de5e4a01}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityLowExpectTextIdentity0]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityLowExpectTextIdentity0
+VAR
+    fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
+    nTextIdentity : UINT;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE TextIdentity#Low
+    cnTextIdentityBufferByte1_IdentityLow : BYTE := 16#00; // 0 = no text identity
+    cnTextIdentityBufferByte2_IdentityLow : BYTE := 16#00;
+    canTextIdentityBuffer_IdentityLow : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityLow,
+                                                                cnTextIdentityBufferByte2_IdentityLow];
+    // @TEST-RESULT TextIdentity#Low
+    cnTextIdentity_IdentityLow : UINT := 0;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenTextIdentityLowExpectTextIdentity0');
 
@@ -80,12 +79,26 @@ fbAssert.AssertEquals_UINT(cnTextIdentity_IdentityHigh, nTextIdentity,
 fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityLow,
                                       nTextIdentity => nTextIdentity);
 // @TEST-ASSERT
-fbAssert.AssertEquals_UINT(cnTextIdentity_IdentityLow, nTextIdentity,
-                           sMessage := 'Test $'TextIdentity#Low$' failed');]]></ST>
+fbAssert.AssertEquals_UINT(Expected := cnTextIdentity_IdentityLow,
+                           Actual := nTextIdentity,
+                           Message := 'Test $'TextIdentity#Low$' failed');]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenTextIdentityMedExpectTextIdentity34500" Id="{e7a45d67-1c10-4366-b59b-9b4a8c1fb6b5}">
-      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityMedExpectTextIdentity34500]]></Declaration>
+      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityMedExpectTextIdentity34500
+VAR
+    fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
+    nTextIdentity : UINT;
+END_VAR
+VAR CONSTANT
+    // @TEST-FIXTURE TextIdentity#Med
+    cnTextIdentityBufferByte1_IdentityMed : BYTE := 16#C4; // 0x86C4 = 34500
+    cnTextIdentityBufferByte2_IdentityMed : BYTE := 16#86;
+    canTextIdentityBuffer_IdentityMed : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityMed,
+                                                                cnTextIdentityBufferByte2_IdentityMed];
+    // @TEST-RESULT TextIdentity#Med
+    cnTextIdentity_IdentityMed : UINT := 34500;
+END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('WhenTextIdentityMedExpectTextIdentity34500');
 
@@ -93,8 +106,9 @@ fbAssert.AssertEquals_UINT(cnTextIdentity_IdentityLow, nTextIdentity,
 fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityMed,
                                       nTextIdentity => nTextIdentity);
 // @TEST-ASSERT
-fbAssert.AssertEquals_UINT(cnTextIdentity_IdentityMed, nTextIdentity,
-                           sMessage := 'Test $'TextIdentity#Med$' failed');]]></ST>
+fbAssert.AssertEquals_UINT(Expected := cnTextIdentity_IdentityMed,
+                           Actual := nTextIdentity,
+                           Message := 'Test $'TextIdentity#Med$' failed');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test">
@@ -111,15 +125,21 @@ fbAssert.AssertEquals_UINT(cnTextIdentity_IdentityMed, nTextIdentity,
     </LineIds>
     <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.WhenTextIdentityHighExpectTextIdentity65535">
       <LineId Id="12" Count="1" />
-      <LineId Id="6" Count="5" />
+      <LineId Id="6" Count="4" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="11" Count="0" />
     </LineIds>
     <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.WhenTextIdentityLowExpectTextIdentity0">
       <LineId Id="12" Count="1" />
-      <LineId Id="6" Count="5" />
+      <LineId Id="6" Count="4" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="11" Count="0" />
     </LineIds>
     <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.WhenTextIdentityMedExpectTextIdentity34500">
       <LineId Id="12" Count="1" />
-      <LineId Id="6" Count="5" />
+      <LineId Id="6" Count="4" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="11" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

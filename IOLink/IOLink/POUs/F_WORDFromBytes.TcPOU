@@ -3,8 +3,8 @@
   <POU Name="F_WORDFromBytes" Id="{d1564ac0-d69f-409c-b1e8-deaeae45b009}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION F_WORDFromBytes : WORD
 VAR_INPUT
-	B1 : BYTE;
-	B0 : BYTE;
+    B1 : BYTE;
+    B0 : BYTE;
 END_VAR
 ]]></Declaration>
     <Implementation>
