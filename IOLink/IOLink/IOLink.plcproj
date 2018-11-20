@@ -16,7 +16,7 @@
     <CombineIds>false</CombineIds>
     <Released>true</Released>
     <Company>www.tcunit.org</Company>
-    <Title>TcUnit</Title>
+    <Title>TcUnit advanced example</Title>
     <ProjectVersion>1.0.0.0</ProjectVersion>
     <Author>Jakob Sagatowski</Author>
     <Description>This library is a demonstration of the TcUnit framework, which is a TwinCAT unit testing framework. It implements certain parts of the IO-Link functionality. IO-Link is a serial communication protocol for end devices such as various types of sensors (temperature, pressure, etc) and actuators. The functionality implemented in this library is related to the "diagnosis" part of IO-Link, which in EtherCAT masters is implemented using the diagnosis history object defined in the ETG1020 specification.</Description>

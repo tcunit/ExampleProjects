@@ -37,7 +37,7 @@ VAR
     nTextIdentity : UINT;
 END_VAR
 VAR CONSTANT
-	// @TEST-FIXTURE TextIdentity#High
+    // @TEST-FIXTURE TextIdentity#High
     cnTextIdentityBufferByte1_IdentityHigh : BYTE := 16#FF; // 0xFFFF = 65535
     cnTextIdentityBufferByte2_IdentityHigh : BYTE := 16#FF;
     canTextIdentityBuffer_IdentityHigh : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityHigh,

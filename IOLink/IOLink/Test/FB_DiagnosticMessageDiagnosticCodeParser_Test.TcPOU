@@ -38,7 +38,7 @@ VAR
     stDiagnosticCode : ST_DIAGNOSTICCODE;
 END_VAR
 VAR CONSTANT
-	// @TEST-FIXTURE EmergencyErrorCode
+    // @TEST-FIXTURE EmergencyErrorCode
     cnDiagnosticCodeBufferByte1_EmergencyErrorCode : BYTE := 16#00; // 16#E800
     cnDiagnosticCodeBufferByte2_EmergencyErrorCode : BYTE := 16#E8;
     cnDiagnosticCodeBufferByte3_EmergencyErrorCode : BYTE := 16#30; // 16#7530 = 10#30000

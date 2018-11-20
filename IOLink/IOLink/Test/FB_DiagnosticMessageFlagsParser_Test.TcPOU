@@ -45,7 +45,7 @@ VAR CONSTANT
                                                           cnFlagsBufferByte2_ErrorMessage];
     // @TEST-RESULT ErrorMessage
     ceFlags_DiagnosisTypeErrorMessage : E_DIAGNOSISTYPE := E_DIAGNOSISTYPE.ErrorMessage;
-	ceFlags_TimeStampTypeLocal : E_TIMESTAMPTYPE := E_TIMESTAMPTYPE.Local;
+    ceFlags_TimeStampTypeLocal : E_TIMESTAMPTYPE := E_TIMESTAMPTYPE.Local;
     cnFlags_NumberOfParametersInDiagnosisMessageFour : USINT := 4;
 END_VAR]]></Declaration>
       <Implementation>
@@ -70,7 +70,7 @@ fbAssert.AssertEquals_USINT(Expected := cnFlags_NumberOfParametersInDiagnosisMes
     <Method Name="WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters" Id="{bb46ac41-02ed-40ed-a816-83fb6980e06d}">
       <Declaration><![CDATA[METHOD PRIVATE WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters
 VAR
-	fbDiagnosticMessageFlagsParser : FB_DiagnosticMessageFlagsParser;
+    fbDiagnosticMessageFlagsParser : FB_DiagnosticMessageFlagsParser;
     stFlags : ST_FLAGS;
 END_VAR
 VAR CONSTANT
@@ -99,7 +99,7 @@ fbAssert.AssertEquals_USINT(Expected := ceFlags_TimeStampTypeGlobal,
                             Actual := stFlags.eTimeStampType,
                            'Test $'Info message$' failed at $'timestamp type$'');
 fbAssert.AssertEquals_USINT(Expected := cnFlags_NumberOfParametersInDiagnosisMessageZero,
-							Actual := stFlags.nNumberOfParametersInDiagnosisMessage,
+                            Actual := stFlags.nNumberOfParametersInDiagnosisMessage,
                            'Test $'Info message$' failed at $'number of parameters$'');]]></ST>
       </Implementation>
     </Method>

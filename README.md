@@ -10,4 +10,15 @@ The functionality implemented in this library is related to the "diagnosis" part
 of IO-Link, which in EtherCAT masters is implemented using the diagnosis history
 object defined in the ETG1020 specification.
 
-Documentation and examples for TcUnit are available at [www.tcunit.org](http://www.tcunit.org)
+This library is explained in full detail in seven chapters on the website for the
+TcUnit framework.
+- [Introduction](https://tcunit.org/programming-example-introduction/)
+- [The function blocks](https://tcunit.org/programming-example-the-function-blocks/)
+- [Test cases - part one](https://tcunit.org/programming-example-test-cases-part-one/)
+- [Test cases - part two](https://tcunit.org/programming-example-test-cases-part-two/)
+- [Implementation - part one](https://tcunit.org/programming-example-implementation-part-one/)
+- [Implementation - part two](https://tcunit.org/programming-example-implementation-part-two/)
+- [Final words](https://tcunit.org/programming-example-final-words/)
+
+
+Documentation and examples for TcUnit is available at [www.tcunit.org](https://www.tcunit.org)
