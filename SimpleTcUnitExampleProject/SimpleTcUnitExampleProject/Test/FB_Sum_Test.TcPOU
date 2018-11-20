@@ -41,10 +41,9 @@ END_VAR]]></Declaration>
 
 fbSum(one := 2, two := 2, result => nResult);
 
-Assert.AssertEquals_UINT(nExpected := 4,
-                         nActual := nResult,
-                         sMessage := 'The calculation is not correct');
-SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+Assert.AssertEquals_UINT(Expected := 4,
+                         Actual := nResult,
+                         Message := 'The calculation is not correct');]]></ST>
       </Implementation>
     </Method>
     <Method Name="ZeroPlusZeroEqualsZero" Id="{ac47aa92-0e7a-4876-b0ac-7ef29219d372}">
@@ -58,10 +57,9 @@ END_VAR]]></Declaration>
 
 fbSum(one := 0, two := 0, result => nResult);
 
-Assert.AssertEquals_UINT(nExpected := 0,
-                         nActual := nResult,
-                         sMessage := 'The calculation is not correct');
-SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+Assert.AssertEquals_UINT(Expected := 0,
+                         Actual := nResult,
+                         Message := 'The calculation is not correct');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_Sum_Test">
@@ -78,11 +76,9 @@ SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
     </LineIds>
     <LineIds Name="FB_Sum_Test.TwoPlusTwoEqualsFour">
       <LineId Id="27" Count="6" />
-      <LineId Id="13" Count="0" />
     </LineIds>
     <LineIds Name="FB_Sum_Test.ZeroPlusZeroEqualsZero">
       <LineId Id="20" Count="6" />
-      <LineId Id="13" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
