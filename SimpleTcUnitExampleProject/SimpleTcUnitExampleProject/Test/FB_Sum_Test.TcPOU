@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_Sum_Test" Id="{69b661ca-5faa-43bb-8b8a-2cae13b2cfe4}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'call_after_init'}
-FUNCTION_BLOCK FB_Sum_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
+FUNCTION_BLOCK FB_Sum_Test EXTENDS TcUnit.FB_TestSuite IMPLEMENTS TcUnit.I_RunnableTestSuite
 VAR
 	Assert : TcUnit.FB_Assert;
 END_VAR]]></Declaration>
@@ -17,17 +17,17 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+        <ST><![CDATA[SUPER^.RegisterTestSuite(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="RunTests" Id="{a311ace9-aa3c-426d-9885-bce7260e159e}">
-      <Declaration><![CDATA[METHOD RunTests : TCUNIT.E_TestFunctionBlockRunState
+      <Declaration><![CDATA[METHOD RunTests : TCUNIT.E_TestSuiteRunState
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[TwoPlusTwoEqualsFour();
 ZeroPlusZeroEqualsZero();
 
-RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
+RunTests := TcUnit.E_TestSuiteRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TwoPlusTwoEqualsFour" Id="{071ba4c3-fe0d-4b0b-be72-a320c9d403a4}">
