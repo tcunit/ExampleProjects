@@ -2,8 +2,8 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_DiagnosticMessageParser" Id="{d33c904e-e991-40fb-ad1d-3aad781c3d6c}" SpecialFunc="None">
     <Declaration><![CDATA[(*
-DESCRIPTION: This function block parses a diagnostic message according to the ETG.1020 protocol enhancements.
-             First 16 data bytes are mandatory data, the remaining 12 data bytes are optional data (parameter 1..n).
+    This function block parses a diagnostic message according to the ETG.1020 protocol enhancements.
+    First 16 data bytes are mandatory data, the remaining 12 data bytes are optional data (parameter 1..n).
 *)
 FUNCTION_BLOCK FB_DiagnosticMessageParser
 VAR_INPUT

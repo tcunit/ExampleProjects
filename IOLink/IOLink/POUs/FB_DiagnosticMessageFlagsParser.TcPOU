@@ -2,8 +2,8 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_DiagnosticMessageFlagsParser" Id="{958e46be-3e7d-422e-a657-01a3d5ad4365}" SpecialFunc="None">
     <Declaration><![CDATA[(*
-DESCRIPTION: This function block parses a the part "flags" of the diagnostic message according to the
-             ETG.1020 protocol enhancements.
+    This function block parses a the part "flags" of the diagnostic message according to the
+    ETG.1020 protocol enhancements.
 *)
 FUNCTION_BLOCK FB_DiagnosticMessageFlagsParser
 VAR_INPUT

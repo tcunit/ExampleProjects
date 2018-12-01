@@ -2,8 +2,8 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_DiagnosticMessageTextIdentityParser" Id="{2dbf806b-45d4-4c42-a746-ebf0d26e6032}" SpecialFunc="None">
     <Declaration><![CDATA[(*
-DESCRIPTION: This function block parses a the part "text identity" of the diagnostic message according to the
-             ETG.1020 protocol enhancements. This is the text identity according to the ESI-file.
+    This function block parses a the part "text identity" of the diagnostic message according to the
+    ETG.1020 protocol enhancements. This is the text identity according to the ESI-file.
 *)
 FUNCTION_BLOCK FB_DiagnosticMessageTextIdentityParser
 VAR_INPUT
