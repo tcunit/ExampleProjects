@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_DiagnosticMessageTimeStampParser_Test" Id="{752a62f8-6e2d-4bb3-9cf7-bb184ac38ba0}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'call_after_init'}
-FUNCTION_BLOCK FB_DiagnosticMessageTimeStampParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
+FUNCTION_BLOCK FB_DiagnosticMessageTimeStampParser_Test EXTENDS TcUnit.FB_TestSuite IMPLEMENTS TcUnit.I_RunnableTestSuite
 VAR
     fbAssert : TcUnit.FB_Assert;
 END_VAR]]></Declaration>
@@ -17,16 +17,16 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+        <ST><![CDATA[SUPER^.RegisterTestSuite(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="RunTests" Id="{2ba7bfb3-9500-4a9f-ac1d-a56036d4abe8}">
-      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestFunctionBlockRunState]]></Declaration>
+      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestSuiteRunState]]></Declaration>
       <Implementation>
         <ST><![CDATA[TestWithTimestampZeroTimeExpectCurrentTime();
 TestWithValidTimestampExpectSameTimestamp();
 
-RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
+RunTests := TcUnit.E_TestSuiteRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TestWithTimestampZeroTimeExpectCurrentTime" Id="{af4b04e8-f73a-4e70-a822-caa6f9030a5f}">

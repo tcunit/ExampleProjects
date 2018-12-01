@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_DiagnosticMessageTextIdentityParser_Test" Id="{afb9ef9f-55d7-44d9-bf09-c8e509ec2f03}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'call_after_init'}
-FUNCTION_BLOCK FB_DiagnosticMessageTextIdentityParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
+FUNCTION_BLOCK FB_DiagnosticMessageTextIdentityParser_Test EXTENDS TcUnit.FB_TestSuite IMPLEMENTS TcUnit.I_RunnableTestSuite
 VAR
     fbAssert : TcUnit.FB_Assert;
 END_VAR]]></Declaration>
@@ -17,17 +17,17 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+        <ST><![CDATA[SUPER^.RegisterTestSuite(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="RunTests" Id="{cb8741bc-c2b9-44d6-bd34-f0278e604442}">
-      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestFunctionBlockRunState]]></Declaration>
+      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestSuiteRunState]]></Declaration>
       <Implementation>
         <ST><![CDATA[WhenTextIdentityLowExpectTextIdentity0();
 WhenTextIdentityHighExpectTextIdentity65535();
 WhenTextIdentityMedExpectTextIdentity34500();
 
-RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
+RunTests := TcUnit.E_TestSuiteRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenTextIdentityHighExpectTextIdentity65535" Id="{6ec38ca8-10ee-48ee-a072-1c11b09af03f}">

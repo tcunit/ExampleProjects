@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_DiagnosticMessageFlagsParser_Test" Id="{2c0e6355-6af7-46b0-9fcf-479aaac3c4bc}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'call_after_init'}
-FUNCTION_BLOCK FB_DiagnosticMessageFlagsParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
+FUNCTION_BLOCK FB_DiagnosticMessageFlagsParser_Test EXTENDS TcUnit.FB_TestSuite IMPLEMENTS TcUnit.I_RunnableTestSuite
 VAR
     fbAssert : TcUnit.FB_Assert;
 END_VAR]]></Declaration>
@@ -17,18 +17,18 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+        <ST><![CDATA[SUPER^.RegisterTestSuite(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="RunTests" Id="{029dc718-3f23-4204-bea3-c455ee34313c}">
-      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestFunctionBlockRunState]]></Declaration>
+      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestSuiteRunState]]></Declaration>
       <Implementation>
         <ST><![CDATA[WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters();
 WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters();
 WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters();
 WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters();
 
-RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
+RunTests := TcUnit.E_TestSuiteRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters" Id="{9a9c4539-6094-4180-9da4-a22f03bc41c6}">

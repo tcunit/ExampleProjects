@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_DiagnosticMessageParser_Test" Id="{e1b0b9f9-bb82-4482-9f75-d8a4f65b6854}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'call_after_init'}
-FUNCTION_BLOCK FB_DiagnosticMessageParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
+FUNCTION_BLOCK FB_DiagnosticMessageParser_Test EXTENDS TcUnit.FB_TestSuite IMPLEMENTS TcUnit.I_RunnableTestSuite
 VAR
     fbAssert : TcUnit.FB_Assert;
 END_VAR]]></Declaration>
@@ -17,18 +17,18 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+        <ST><![CDATA[SUPER^.RegisterTestSuite(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="RunTests" Id="{16b7b692-a07a-4cd0-8c09-1923f75015ca}">
-      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestFunctionBlockRunState]]></Declaration>
+      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestSuiteRunState]]></Declaration>
       <Implementation>
         <ST><![CDATA[TestWithEmergencyMessage();
 TestWithManufacturerSpecificMessage();
 TestWithUnspecifiedMessageMessage();
 TestWithUnspecifiedMessageMessage_ParameterVariant();
 
-RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
+RunTests := TcUnit.E_TestSuiteRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="TestWithEmergencyMessage" Id="{b35a8cf6-b184-4c7a-86c8-0bc957652e20}">

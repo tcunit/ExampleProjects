@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
   <POU Name="FB_DiagnosticMessageDiagnosticCodeParser_Test" Id="{64146728-6fd6-498c-ab86-3eb3314b4608}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'call_after_init'}
-FUNCTION_BLOCK FB_DiagnosticMessageDiagnosticCodeParser_Test EXTENDS TcUnit.FB_TestFunctionBlock IMPLEMENTS TcUnit.I_RunnableTestFunctionBlock
+FUNCTION_BLOCK FB_DiagnosticMessageDiagnosticCodeParser_Test EXTENDS TcUnit.FB_TestSuite IMPLEMENTS TcUnit.I_RunnableTestSuite
 VAR
     fbAssert : TcUnit.FB_Assert;
 END_VAR]]></Declaration>
@@ -17,18 +17,18 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SUPER^.RegisterTestFunctionBlock(THIS^);]]></ST>
+        <ST><![CDATA[SUPER^.RegisterTestSuite(THIS^);]]></ST>
       </Implementation>
     </Method>
     <Method Name="RunTests" Id="{e1793137-9288-4457-86fc-b3f1fbc53642}">
-      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestFunctionBlockRunState]]></Declaration>
+      <Declaration><![CDATA[METHOD RunTests : TcUnit.E_TestSuiteRunState]]></Declaration>
       <Implementation>
         <ST><![CDATA[WhenEmergencyErrorCodeExpectEmergencyErrorCode();
 WhenManufacturerSpecificExpectManufacturerSpecific();
 WhenProfileSpecificExpectProfileSpecific();
 WhenReservedForFutureUseExpectReservedForFutureUse();
 
-RunTests := TcUnit.E_TestFunctionBlockRunState.FINISHED;]]></ST>
+RunTests := TcUnit.E_TestSuiteRunState.FINISHED;]]></ST>
       </Implementation>
     </Method>
     <Method Name="WhenEmergencyErrorCodeExpectEmergencyErrorCode" Id="{11e83834-3403-4afa-90e6-bf62eb856126}">
