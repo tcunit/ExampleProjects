@@ -1,7 +1,7 @@
 # IOLink - A TwinCAT library for demonstrating TcUnit
 
 This library project is used primarily for the demonstration purposes of the
-[TwinCAT unit testing framework **TcUnit**](https://github.com/sagatowski/TcUnit). 
+[TwinCAT unit testing framework **TcUnit**](https://github.com/tcunit/TcUnit). 
 
 It implements certain parts of the IO-Link functionality.
 IO-Link is a serial communication protocol for end devices such as various types
