@@ -19,7 +19,7 @@
     <ProjectVersion>1.0.0.0</ProjectVersion>
     <Title>TcUnit simple example</Title>
     <Author>Jakob Sagatowski</Author>
-    <Description>This library is a demonstration of the TcUnit framework, which is a TwinCAT unit testing framework.</Description>
+    <Description>This library is a demonstration of the TcUnit framework, which is a TwinCAT unit testing framework. See www.tcunit.org for more information.</Description>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="PlcTask.TcTTO">

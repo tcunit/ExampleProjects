@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
   <POU Name="FB_Sum_Test" Id="{69b661ca-5faa-43bb-8b8a-2cae13b2cfe4}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK FB_Sum_Test EXTENDS TcUnit.FB_TestSuite IMPLEMENTS TcUnit.I_RunnableTestSuite
@@ -33,33 +33,35 @@ RunTests := TcUnit.E_TestSuiteRunState.FINISHED;]]></ST>
     <Method Name="TwoPlusTwoEqualsFour" Id="{071ba4c3-fe0d-4b0b-be72-a320c9d403a4}">
       <Declaration><![CDATA[METHOD PRIVATE TwoPlusTwoEqualsFour
 VAR
-	fbSum : FB_Sum;
-	nResult : UINT;
+	Sum : FB_Sum;
+	Result : UINT;
+    ExpectedSum : UINT := 4;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('TwoPlusTwoEqualsFour');
 
-fbSum(one := 2, two := 2, result => nResult);
+Sum(one := 2, two := 2, result => Result);
 
-Assert.AssertEquals_UINT(Expected := 4,
-                         Actual := nResult,
-                         Message := 'The calculation is not correct');]]></ST>
+Assert.AssertEquals(Expected := ExpectedSum,
+                    Actual := Result,
+                    Message := 'The calculation is not correct');]]></ST>
       </Implementation>
     </Method>
     <Method Name="ZeroPlusZeroEqualsZero" Id="{ac47aa92-0e7a-4876-b0ac-7ef29219d372}">
       <Declaration><![CDATA[METHOD PRIVATE ZeroPlusZeroEqualsZero
 VAR
-	fbSum : FB_Sum;
-	nResult : UINT;
+	Sum : FB_Sum;
+	Result : UINT;
+    ExpectedSum : UINT := 0;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[TEST('ZeroPlusZeroEqualsZero');
 
-fbSum(one := 0, two := 0, result => nResult);
+Sum(one := 0, two := 0, result => Result);
 
-Assert.AssertEquals_UINT(Expected := 0,
-                         Actual := nResult,
-                         Message := 'The calculation is not correct');]]></ST>
+Assert.AssertEquals(Expected := ExpectedSum,
+                    Actual := Result,
+                    Message := 'The calculation is not correct');]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="FB_Sum_Test">
