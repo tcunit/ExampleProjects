@@ -36,7 +36,7 @@ VAR
     sTimeStamp : STRING(29);
 
     nCurrentDcTaskTime : Tc2_EtherCAT.T_DCTIME64;
-    sCurrentDcTaskTimeString : STRING;
+    sCurrentDcTaskTimeString : STRING(29);
 
     // @TEST-FIXTURE time stamp zero time
     canTimeStampBuffer_TimeStampZeroTime : ARRAY[1..8] OF BYTE := [8(16#00)];
