@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
   <POU Name="FB_DiagnosticMessageParser_Test" Id="{e1b0b9f9-bb82-4482-9f75-d8a4f65b6854}" SpecialFunc="None">
-    <Declaration><![CDATA[{attribute 'call_after_init'}
-FUNCTION_BLOCK FB_DiagnosticMessageParser_Test EXTENDS TcUnit.FB_TestSuite]]></Declaration>
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DiagnosticMessageParser_Test EXTENDS TcUnit.FB_TestSuite]]></Declaration>
     <Implementation>
       <ST><![CDATA[TestWithEmergencyMessage();
 TestWithManufacturerSpecificMessage();

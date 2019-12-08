@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
   <POU Name="FB_DiagnosticMessageFlagsParser_Test" Id="{2c0e6355-6af7-46b0-9fcf-479aaac3c4bc}" SpecialFunc="None">
-    <Declaration><![CDATA[{attribute 'call_after_init'}
-FUNCTION_BLOCK FB_DiagnosticMessageFlagsParser_Test EXTENDS TcUnit.FB_TestSuite]]></Declaration>
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DiagnosticMessageFlagsParser_Test EXTENDS TcUnit.FB_TestSuite]]></Declaration>
     <Implementation>
       <ST><![CDATA[WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters();
 WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters();
