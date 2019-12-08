@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
   <POU Name="FB_Sum_Test" Id="{69b661ca-5faa-43bb-8b8a-2cae13b2cfe4}" SpecialFunc="None">
-    <Declaration><![CDATA[{attribute 'call_after_init'}
-FUNCTION_BLOCK FB_Sum_Test EXTENDS TcUnit.FB_TestSuite
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Sum_Test EXTENDS TcUnit.FB_TestSuite
 VAR
 END_VAR]]></Declaration>
     <Implementation>
