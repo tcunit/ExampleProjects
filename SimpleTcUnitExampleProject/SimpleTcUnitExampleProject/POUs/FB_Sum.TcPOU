@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <POU Name="FB_Sum" Id="{8328f7d8-1dbc-4e08-98b0-eb6438d2b355}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Sum
+VAR_INPUT
+	one : UINT;
+	two : UINT;
+END_VAR
+VAR_OUTPUT
+	result : UINT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[result := one + two;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Sum">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

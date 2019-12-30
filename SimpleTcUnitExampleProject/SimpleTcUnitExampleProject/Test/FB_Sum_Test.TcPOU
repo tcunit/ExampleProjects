@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_Sum_Test" Id="{69b661ca-5faa-43bb-8b8a-2cae13b2cfe4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Sum_Test EXTENDS TcUnit.FB_TestSuite
+VAR
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TwoPlusTwoEqualsFour();
+ZeroPlusZeroEqualsZero();]]></ST>
+    </Implementation>
+    <Method Name="TwoPlusTwoEqualsFour" Id="{071ba4c3-fe0d-4b0b-be72-a320c9d403a4}">
+      <Declaration><![CDATA[METHOD PRIVATE TwoPlusTwoEqualsFour
+VAR
+	Sum : FB_Sum;
+	Result : UINT;
+    ExpectedSum : UINT := 4;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TwoPlusTwoEqualsFour');
+
+Sum(one := 2, two := 2, result => Result);
+
+AssertEquals(Expected := ExpectedSum,
+             Actual := Result,
+             Message := 'The calculation is not correct');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ZeroPlusZeroEqualsZero" Id="{ac47aa92-0e7a-4876-b0ac-7ef29219d372}">
+      <Declaration><![CDATA[METHOD PRIVATE ZeroPlusZeroEqualsZero
+VAR
+	Sum : FB_Sum;
+	Result : UINT;
+    ExpectedSum : UINT := 0;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('ZeroPlusZeroEqualsZero');
+
+Sum(one := 0, two := 0, result => Result);
+
+AssertEquals(Expected := ExpectedSum,
+             Actual := Result,
+             Message := 'The calculation is not correct');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Sum_Test">
+      <LineId Id="15" Count="0" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Sum_Test.TwoPlusTwoEqualsFour">
+      <LineId Id="27" Count="6" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="39" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Sum_Test.ZeroPlusZeroEqualsZero">
+      <LineId Id="20" Count="6" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="32" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
