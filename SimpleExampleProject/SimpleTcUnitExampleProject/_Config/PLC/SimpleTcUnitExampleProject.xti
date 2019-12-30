@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmItem" TcSmVersion="1.0" TcVersion="3.1.4022.30" ClassName="CNestedPlcProjDef">
-	<Project GUID="{4D4C8FF4-CB12-4407-939B-A2F5E12095ED}" Name="IOLink" PrjFilePath="..\..\IOLink\IOLink.plcproj" TmcFilePath="..\..\IOLink\IOLink.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+	<Project GUID="{B7C07472-6F11-48D6-81A5-DBB6C3DA7482}" Name="SimpleTcUnitExampleProject" PrjFilePath="..\..\SimpleTcUnitExampleProject\SimpleTcUnitExampleProject.plcproj" TmcFilePath="..\..\SimpleTcUnitExampleProject\SimpleTcUnitExampleProject.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2">
-			<Name>IOLink Instance</Name>
+			<Name>SimpleTcUnitExampleProject Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 		</Instance>
 	</Project>

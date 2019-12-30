@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
-  <POU Name="PRG_TEST" Id="{5e8cc903-e536-40be-a096-d6b305fbb618}" SpecialFunc="None">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="PRG_TEST" Id="{e571d8c7-b2e6-40a1-b02a-f04440559a76}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PRG_TEST
 VAR
 	fbSum_Test : FB_Sum_Test;

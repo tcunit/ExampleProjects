@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
-  <POU Name="PRG_TEST" Id="{3bfc60f2-8519-4328-9881-3025ea8780d1}" SpecialFunc="None">
+  <POU Name="PRG_TEST" Id="{0e87b1b9-66e8-4e1a-b53f-6926a5ea0301}" SpecialFunc="None">
     <Declaration><![CDATA[(*
     This is the main program for execution of the unit tests.
 *)
@@ -17,7 +17,7 @@ END_VAR]]></Declaration>
       <ST><![CDATA[TcUnit.RUN();]]></ST>
     </Implementation>
     <LineIds Name="PRG_TEST">
-      <LineId Id="37" Count="0" />
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

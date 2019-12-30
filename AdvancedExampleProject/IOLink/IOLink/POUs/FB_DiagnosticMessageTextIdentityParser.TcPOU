@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
   <POU Name="FB_DiagnosticMessageTextIdentityParser" Id="{2dbf806b-45d4-4c42-a746-ebf0d26e6032}" SpecialFunc="None">
     <Declaration><![CDATA[(*
     This function block parses a the part "text identity" of the diagnostic message according to the

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
   <POU Name="FB_DiagnosticMessageParser" Id="{d33c904e-e991-40fb-ad1d-3aad781c3d6c}" SpecialFunc="None">
     <Declaration><![CDATA[(*
     This function block parses a diagnostic message according to the ETG.1020 protocol enhancements.

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
   <POU Name="F_DWORDFromBytes" Id="{c95b8ac3-4cac-4e1b-81d5-76da0d3ca853}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION F_DWORDFromBytes : DWORD
 VAR_INPUT
