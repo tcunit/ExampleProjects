@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="PRG_TEST" Id="{3bfc60f2-8519-4328-9881-3025ea8780d1}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+    This is the main program for execution of the unit tests.
+*)
+PROGRAM PRG_TEST
+VAR	
+    (* Test function blocks *)
+    fbDiagnosticMessageDiagnosticCodeParser_Test : FB_DiagnosticMessageDiagnosticCodeParser_Test;
+    fbDiagnosticMessageFlagsParser_Test : FB_DiagnosticMessageFlagsParser_Test;
+    fbDiagnosticMessageParser_Test : FB_DiagnosticMessageParser_Test;
+    fbDiagnosticMessageTextIdentityParser_Test : FB_DiagnosticMessageTextIdentityParser_Test;
+    fbDiagnosticMessageTimeStampParser_Test : FB_DiagnosticMessageTimeStampParser_Test;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TcUnit.RUN();]]></ST>
+    </Implementation>
+    <LineIds Name="PRG_TEST">
+      <LineId Id="37" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
