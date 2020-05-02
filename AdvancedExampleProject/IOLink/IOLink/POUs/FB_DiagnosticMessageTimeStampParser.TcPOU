@@ -33,9 +33,5 @@ END_IF
 
 sTimeStamp := DCTIME64_TO_STRING(in := nDCTime64);]]></ST>
     </Implementation>
-    <LineIds Name="FB_DiagnosticMessageTimeStampParser">
-      <LineId Id="30" Count="9" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

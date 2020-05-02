@@ -167,37 +167,5 @@ AssertEquals_UINT(Expected := cnDiagnosticCode_ReservedForFutureUse,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_DiagnosticMessageDiagnosticCodeParser_Test">
-      <LineId Id="14" Count="2" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageDiagnosticCodeParser_Test.WhenEmergencyErrorCodeExpectEmergencyErrorCode">
-      <LineId Id="19" Count="1" />
-      <LineId Id="6" Count="7" />
-      <LineId Id="15" Count="2" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="40" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageDiagnosticCodeParser_Test.WhenManufacturerSpecificExpectManufacturerSpecific">
-      <LineId Id="30" Count="1" />
-      <LineId Id="18" Count="7" />
-      <LineId Id="27" Count="2" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="52" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageDiagnosticCodeParser_Test.WhenProfileSpecificExpectProfileSpecific">
-      <LineId Id="42" Count="1" />
-      <LineId Id="30" Count="7" />
-      <LineId Id="39" Count="2" />
-      <LineId Id="65" Count="0" />
-      <LineId Id="64" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageDiagnosticCodeParser_Test.WhenReservedForFutureUseExpectReservedForFutureUse">
-      <LineId Id="54" Count="1" />
-      <LineId Id="42" Count="7" />
-      <LineId Id="51" Count="2" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="76" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

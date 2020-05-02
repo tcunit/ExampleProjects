@@ -46,19 +46,5 @@ AssertEquals(Expected := ExpectedSum,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Sum_Test">
-      <LineId Id="15" Count="0" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Sum_Test.TwoPlusTwoEqualsFour">
-      <LineId Id="27" Count="6" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="39" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Sum_Test.ZeroPlusZeroEqualsZero">
-      <LineId Id="20" Count="6" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="32" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

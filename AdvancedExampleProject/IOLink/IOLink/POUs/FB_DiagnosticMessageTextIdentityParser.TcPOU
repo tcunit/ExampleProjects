@@ -15,8 +15,5 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[nTextIdentity := WORD_TO_UINT(F_WORDFromBytes(B1 := anTextIdentityBuffer[2], B0 := anTextIdentityBuffer[1]));]]></ST>
     </Implementation>
-    <LineIds Name="FB_DiagnosticMessageTextIdentityParser">
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -12,8 +12,5 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[result := one + two;]]></ST>
     </Implementation>
-    <LineIds Name="FB_Sum">
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

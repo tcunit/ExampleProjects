@@ -156,57 +156,5 @@ AssertEquals(Expected := cnFlags_NumberOfParametersInDiagnosisMessageTwo,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_DiagnosticMessageFlagsParser_Test">
-      <LineId Id="14" Count="2" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageFlagsParser_Test.WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters">
-      <LineId Id="36" Count="1" />
-      <LineId Id="26" Count="5" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="32" Count="1" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="34" Count="1" />
-      <LineId Id="55" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="71" Count="0" />
-      <LineId Id="70" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageFlagsParser_Test.WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters">
-      <LineId Id="16" Count="1" />
-      <LineId Id="6" Count="5" />
-      <LineId Id="50" Count="0" />
-      <LineId Id="12" Count="1" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="14" Count="1" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="67" Count="0" />
-      <LineId Id="66" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageFlagsParser_Test.WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters">
-      <LineId Id="49" Count="1" />
-      <LineId Id="39" Count="5" />
-      <LineId Id="66" Count="0" />
-      <LineId Id="45" Count="1" />
-      <LineId Id="67" Count="0" />
-      <LineId Id="47" Count="1" />
-      <LineId Id="68" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="84" Count="0" />
-      <LineId Id="83" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageFlagsParser_Test.WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters">
-      <LineId Id="26" Count="1" />
-      <LineId Id="16" Count="5" />
-      <LineId Id="43" Count="0" />
-      <LineId Id="22" Count="1" />
-      <LineId Id="44" Count="0" />
-      <LineId Id="24" Count="1" />
-      <LineId Id="45" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="60" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

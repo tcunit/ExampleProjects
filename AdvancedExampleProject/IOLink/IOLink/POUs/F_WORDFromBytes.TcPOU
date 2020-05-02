@@ -10,8 +10,5 @@ END_VAR
     <Implementation>
       <ST><![CDATA[F_WORDFromBytes := SHL(BYTE_TO_WORD(B1),8) OR BYTE_TO_WORD(B0);]]></ST>
     </Implementation>
-    <LineIds Name="F_WORDFromBytes">
-      <LineId Id="7" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

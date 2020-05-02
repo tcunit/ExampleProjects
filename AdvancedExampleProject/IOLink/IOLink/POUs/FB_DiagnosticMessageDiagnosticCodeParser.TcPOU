@@ -57,9 +57,5 @@ nCode := nCode OR nCodeLow;
 
 stDiagnosticCode.nCode := WORD_TO_UINT(nCode);]]></ST>
     </Implementation>
-    <LineIds Name="FB_DiagnosticMessageDiagnosticCodeParser">
-      <LineId Id="16" Count="22" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

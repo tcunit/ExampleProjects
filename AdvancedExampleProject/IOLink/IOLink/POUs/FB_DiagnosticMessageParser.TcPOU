@@ -58,8 +58,5 @@ fbDiagnosticMessageTimeStampParser(anTimeStampBuffer := anTimeStampBuffer,
                                    bIsLocalTime := (stDiagnosticMessage.stFlags.eTimeStampType = E_TIMESTAMPTYPE.Local),
                                    sTimeStamp => stDiagnosticMessage.sTimeStamp);]]></ST>
     </Implementation>
-    <LineIds Name="FB_DiagnosticMessageParser">
-      <LineId Id="35" Count="31" />
-    </LineIds>
   </POU>
 </TcPlcObject>

@@ -35,11 +35,5 @@ END_IF
 
 stFlags.nNumberOfParametersInDiagnosisMessage := BYTE_TO_USINT(anFlagsBuffer[2]);]]></ST>
     </Implementation>
-    <LineIds Name="FB_DiagnosticMessageFlagsParser">
-      <LineId Id="25" Count="3" />
-      <LineId Id="30" Count="5" />
-      <LineId Id="37" Count="6" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

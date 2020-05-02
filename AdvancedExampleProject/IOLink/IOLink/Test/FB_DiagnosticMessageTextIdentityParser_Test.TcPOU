@@ -91,32 +91,5 @@ AssertEquals(Expected := cnTextIdentity_IdentityMed,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test">
-      <LineId Id="14" Count="2" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.WhenTextIdentityHighExpectTextIdentity65535">
-      <LineId Id="12" Count="1" />
-      <LineId Id="6" Count="4" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="40" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.WhenTextIdentityLowExpectTextIdentity0">
-      <LineId Id="12" Count="1" />
-      <LineId Id="6" Count="4" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="40" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageTextIdentityParser_Test.WhenTextIdentityMedExpectTextIdentity34500">
-      <LineId Id="12" Count="1" />
-      <LineId Id="6" Count="4" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="40" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

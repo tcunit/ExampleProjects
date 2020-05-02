@@ -76,24 +76,5 @@ AssertEquals(Expected := csTimeStamp_TimeStampValidTime,
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_DiagnosticMessageTimeStampParser_Test">
-      <LineId Id="14" Count="0" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageTimeStampParser_Test.TestWithTimestampZeroTimeExpectCurrentTime">
-      <LineId Id="13" Count="1" />
-      <LineId Id="6" Count="2" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="27" Count="1" />
-      <LineId Id="9" Count="3" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="39" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageTimeStampParser_Test.TestWithValidTimestampExpectSameTimestamp">
-      <LineId Id="14" Count="1" />
-      <LineId Id="6" Count="7" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="40" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

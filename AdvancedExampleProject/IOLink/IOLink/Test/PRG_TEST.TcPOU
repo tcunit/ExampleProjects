@@ -16,8 +16,5 @@ END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[TcUnit.RUN();]]></ST>
     </Implementation>
-    <LineIds Name="PRG_TEST">
-      <LineId Id="2" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

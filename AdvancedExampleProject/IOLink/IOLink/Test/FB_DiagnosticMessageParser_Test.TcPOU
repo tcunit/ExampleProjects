@@ -427,58 +427,5 @@ AssertEquals(Expected := cstDiagnosticMessage_UnspecifiedMessage_ParameterVarian
 TEST_FINISHED();]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_DiagnosticMessageParser_Test">
-      <LineId Id="14" Count="2" />
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageParser_Test.TestWithEmergencyMessage">
-      <LineId Id="40" Count="1" />
-      <LineId Id="6" Count="9" />
-      <LineId Id="17" Count="2" />
-      <LineId Id="21" Count="2" />
-      <LineId Id="25" Count="2" />
-      <LineId Id="29" Count="2" />
-      <LineId Id="33" Count="2" />
-      <LineId Id="37" Count="2" />
-      <LineId Id="101" Count="0" />
-      <LineId Id="100" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageParser_Test.TestWithManufacturerSpecificMessage">
-      <LineId Id="38" Count="1" />
-      <LineId Id="6" Count="7" />
-      <LineId Id="15" Count="2" />
-      <LineId Id="19" Count="2" />
-      <LineId Id="23" Count="2" />
-      <LineId Id="27" Count="2" />
-      <LineId Id="31" Count="2" />
-      <LineId Id="35" Count="2" />
-      <LineId Id="114" Count="0" />
-      <LineId Id="113" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageParser_Test.TestWithUnspecifiedMessageMessage">
-      <LineId Id="40" Count="0" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="6" Count="7" />
-      <LineId Id="15" Count="2" />
-      <LineId Id="19" Count="2" />
-      <LineId Id="23" Count="2" />
-      <LineId Id="27" Count="2" />
-      <LineId Id="31" Count="2" />
-      <LineId Id="35" Count="2" />
-      <LineId Id="115" Count="0" />
-      <LineId Id="114" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_DiagnosticMessageParser_Test.TestWithUnspecifiedMessageMessage_ParameterVariant">
-      <LineId Id="38" Count="1" />
-      <LineId Id="6" Count="7" />
-      <LineId Id="15" Count="2" />
-      <LineId Id="19" Count="2" />
-      <LineId Id="23" Count="2" />
-      <LineId Id="27" Count="2" />
-      <LineId Id="31" Count="2" />
-      <LineId Id="35" Count="2" />
-      <LineId Id="114" Count="0" />
-      <LineId Id="113" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
