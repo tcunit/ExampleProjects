@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="PRG_TEST" Id="{adfde850-4df1-47b0-9a75-b0eabf0a1998}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+    This example executes four tests in a sequence, and on top of this there is also one test
+    that runs in parallel with the other four tests. The execution of tests in a sequence is
+    achieved by calling the TEST_ORDERED() for the four tests, and TEST() for the test that
+    runs in parallel with the other. The test-order of the sequential tests is defined by the
+    order of which the tests are being called. The tests include tests for function blocks
+    which need several cycles to complete, as the function blocks under tests use both state
+    machines and times to complete and to reach their correct output state.
+*)
+PROGRAM PRG_TEST
+VAR
+    StateMachineAndTimedFunctionBlock_Test : FB_StateMachineAndTimedFunctionBlock_Test;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TcUnit.RUN();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

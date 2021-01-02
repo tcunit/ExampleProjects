@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <DUT Name="ST_DIAGNOSTICMESSAGE" Id="{b78917fa-7725-4496-a05b-ea21f85e2a59}">
+    <Declaration><![CDATA[TYPE ST_DIAGNOSTICMESSAGE :
+STRUCT
+    stDiagnosticCode : ST_DIAGNOSTICCODE;
+    stFlags : ST_FLAGS;
+    nTextIdentityReferenceToESIFile : UINT;
+    sTimeStamp : STRING(29);
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

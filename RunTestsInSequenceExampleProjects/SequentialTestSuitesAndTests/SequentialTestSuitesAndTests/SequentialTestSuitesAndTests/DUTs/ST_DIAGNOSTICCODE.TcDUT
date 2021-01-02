@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <DUT Name="ST_DIAGNOSTICCODE" Id="{33760e3f-c166-46af-b1fa-3eff0f8bd21b}">
+    <Declaration><![CDATA[TYPE ST_DIAGNOSTICCODE :
+STRUCT
+    eDiagnosticCodeType : E_DIAGNOSTICCODETYPE;
+    nCode : UINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

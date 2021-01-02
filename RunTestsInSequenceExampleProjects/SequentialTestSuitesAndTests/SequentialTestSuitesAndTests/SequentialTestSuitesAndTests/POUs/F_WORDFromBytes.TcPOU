@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="F_WORDFromBytes" Id="{d1564ac0-d69f-409c-b1e8-deaeae45b009}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_WORDFromBytes : WORD
+VAR_INPUT
+    B1 : BYTE;
+    B0 : BYTE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[F_WORDFromBytes := SHL(BYTE_TO_WORD(B1),8) OR BYTE_TO_WORD(B0);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

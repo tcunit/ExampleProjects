@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <GVL Name="GVL" Id="{f215fd48-1cb0-4b73-9578-03c6a30e1dbf}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+    timedfb_testshortTime : ULINT;
+    timedfb_testLongTime : ULINT;
+    statemachinefb_testvariant100 : ULINT;
+    statemachinefb_testvariant50 : ULINT;
+    statemachinefb_testvariant20 : ULINT;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

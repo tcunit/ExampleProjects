@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <DUT Name="E_DIAGNOSTICCODETYPE" Id="{5d254b9d-c648-488d-8d91-6d5091811742}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_DIAGNOSTICCODETYPE :
+(
+    ManufacturerSpecific := 0,
+    EmergencyErrorCodeDS301 := 1,
+    ProfileSpecific := 2,
+    Unspecified := 3
+) USINT;
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

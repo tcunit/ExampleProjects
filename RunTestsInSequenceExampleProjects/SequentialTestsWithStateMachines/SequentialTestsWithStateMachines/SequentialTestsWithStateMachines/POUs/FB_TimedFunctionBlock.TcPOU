@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_TimedFunctionBlock" Id="{0758f8d3-aed1-4d80-a53c-157f7144ef14}" SpecialFunc="None">
+    <Declaration><![CDATA[(* This test will return the nValue 100 when this function block has been executed with a rising edge of bStart for at least 10 seconds *)
+FUNCTION_BLOCK FB_TimedFunctionBlock
+VAR_INPUT
+    bExecute : BOOL;
+END_VAR
+VAR_OUTPUT
+    nValue : INT;
+END_VAR
+VAR
+    fbTimer : Tc2_Standard.TON := (PT := T#5S);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbTimer(IN := bExecute); // Start timer on high trigger, reset timer on low
+
+// Return value 100 if timer elapsed, otherwise return value 0
+IF fbTimer.Q THEN
+    nValue := 100;
+ELSE
+    nValue := 0;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

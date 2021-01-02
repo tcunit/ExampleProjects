@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_Sum_Test_1" Id="{dccb2486-9208-457f-b053-02c0ae8a2c84}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Sum_Test_1 EXTENDS TcUnit.FB_TestSuite
+VAR
+    a : BIT := TRUE;
+    b : BIT := TRUE;
+    c : BIT := TRUE;
+    d : BIT := FALSE;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Hej();
+Hej2();]]></ST>
+    </Implementation>
+    <Method Name="Hej" Id="{6d845734-0c14-413c-abce-7ccdf87b41ab}">
+      <Declaration><![CDATA[METHOD PRIVATE Hej
+VAR
+	Sum : FB_Sum;
+	Result : UINT;
+    ExpectedSum : UINT := 4;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('Hej');
+
+AssertEquals_BOOL(Expected := BIT_TO_BOOL(a),
+                  Actual := BIT_TO_BOOL(b),
+                  Message := 'The calculation is not correct');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Hej2" Id="{746bcfb0-20f6-4cd1-a0ac-fa44eec8a361}">
+      <Declaration><![CDATA[METHOD PRIVATE Hej2
+VAR
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('Hej2');
+
+AssertEquals_BOOL(Expected := BIT_TO_BOOL(c),
+                  Actual := BIT_TO_BOOL(d),
+                  Message := 'The calculation is not correct');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_StateMachineFunctionBlock" Id="{a4a8403e-6b86-4b5e-adfe-6d7fb59a2114}" SpecialFunc="None">
+    <Declaration><![CDATA[(* This function block will return a value after a couple of cycle calls, and after setting bStart to TRUE.
+   It will return the value 100 if nVariant is set to anything else than 50, and the value 200 if nVariant is set to 50 *)
+FUNCTION_BLOCK FB_StateMachineFunctionBlock
+VAR_INPUT
+    bStart : BOOL;
+    nVariant : INT;
+END_VAR
+VAR_OUTPUT
+    nValue : INT;
+END_VAR
+VAR
+    nState : INT;
+    bTrigger : Tc2_Standard.R_TRIG();
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE nState OF
+    0 : 
+        bTrigger(CLK := bStart);
+        IF bTrigger.Q THEN
+            nState := 1;
+		END_IF
+
+    1 :
+        nValue := 0; // Reset output value
+        nState := 2;
+    
+    2 :
+        IF nVariant = 50 THEN
+            nState := 20;
+        ELSE
+            nState := 10;
+		END_IF
+
+    10 : 
+        nValue := 100;
+        nState := 0;
+
+    20 :
+        nValue := 200;
+        nState := 0;
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

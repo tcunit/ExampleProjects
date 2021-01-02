@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="PRG_TEST" Id="{e3d22641-1260-4dd3-8ede-ae3372ed2871}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+    This is the main program for execution of the unit tests.
+    The program executes the test suites one after the other, with a delay of T#0MS between
+    each other (that is, as soon as one test suite has finished executing, the next
+    one starts to execute immediately after). This delay is defined in the call to
+    RUN_IN_SEQUENCE(T#0MS).
+    Within each test suite, the program also executes each test one after the other, which
+    is achieved by calling the TEST_ORDERED() for every test. The test-order is defined
+    by the order of which the tests are being called.
+*)
+PROGRAM PRG_TEST
+VAR
+    (* Test function blocks *)
+    fbDiagnosticMessageDiagnosticCodeParser_Test : FB_DiagnosticMessageDiagnosticCodeParser_Test;
+    fbDiagnosticMessageFlagsParser_Test : FB_DiagnosticMessageFlagsParser_Test;
+    fbDiagnosticMessageParser_Test : FB_DiagnosticMessageParser_Test;
+    fbDiagnosticMessageTextIdentityParser_Test : FB_DiagnosticMessageTextIdentityParser_Test;
+    fbDiagnosticMessageTimeStampParser_Test : FB_DiagnosticMessageTimeStampParser_Test;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TcUnit.RUN_IN_SEQUENCE(T#0MS);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

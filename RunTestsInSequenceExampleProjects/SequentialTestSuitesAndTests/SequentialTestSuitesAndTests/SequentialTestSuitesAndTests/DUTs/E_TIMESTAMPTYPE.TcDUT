@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <DUT Name="E_TIMESTAMPTYPE" Id="{52489913-dce0-4ebd-90e2-562a824a80f9}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_TIMESTAMPTYPE :
+(
+    Local := 0,
+    Global := 1
+) USINT;
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

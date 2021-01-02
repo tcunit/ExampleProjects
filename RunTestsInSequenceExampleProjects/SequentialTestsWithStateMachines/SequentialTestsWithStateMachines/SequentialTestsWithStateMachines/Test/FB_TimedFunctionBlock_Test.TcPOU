@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_TimedFunctionBlock_Test" Id="{b61c559b-88ac-43aa-be34-01ff67d90007}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TimedFunctionBlock_Test EXTENDS TcUnit.FB_TestSuite]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* The tests are run in the order that they are called. Asserts are not evaluated before the previous test has called TEST_FINISHED() *)
+TestShortTime(); // This test will fail
+TestLongTime();]]></ST>
+    </Implementation>
+    <Method Name="TestLongTime" Id="{9bdec002-5ca8-45f1-806c-7983901457e8}">
+      <Declaration><![CDATA[METHOD PRIVATE TestLongTime
+(* We need to declare the FB_TimedFunctionBlock_Test as an instance variable,
+   as it needs to hold its values over several cycles *)
+VAR_INST
+    // Function block under test
+    fbTimedFunctionBlock : FB_TimedFunctionBlock;
+    fbTon : Tc2_Standard.TON := (PT := T#10S); // The maximum time we will run the test
+END_VAR
+VAR CONSTANT
+    EXPECTED_RESULT : INT := 100;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* Make sure to only run test logic if it's time for this test to execute *)
+IF TEST_ORDERED('TestLongTime') THEN
+    GVL.timedfb_testLongTime := GVL.timedfb_testLongTime + 1;
+    fbTon(IN := TRUE); // Maximum time we will run the test
+    fbTimedFunctionBlock(bExecute := TRUE);
+    (* Check if we get a timeout or if we get the result we want *)
+    IF fbTon.Q OR fbTimedFunctionBlock.nValue = EXPECTED_RESULT THEN
+        AssertEquals_INT(Expected := EXPECTED_RESULT,
+                         Actual := fbTimedFunctionBlock.nValue,
+                         Message := 'Value not correct');
+        TEST_FINISHED();
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestShortTime" Id="{90a4f366-4cdc-4aa6-9bdd-da2a367c7c40}">
+      <Declaration><![CDATA[METHOD PRIVATE TestShortTime
+(* We need to declare the FB_TimedFunctionBlock_Test as an instance variable,
+   as it needs to hold its values over several cycles *)
+VAR_INST
+    // Function block under test
+    fbTimedFunctionBlock : FB_TimedFunctionBlock;
+    fbTon : Tc2_Standard.TON := (PT := T#2S); // The maximum time we will run the test
+END_VAR
+VAR CONSTANT
+    EXPECTED_RESULT : INT := 100;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* Make sure to only run test logic if it's time for this test to execute
+   Note that this test will fail, as we will not run it long enough to get the correct result! *)
+IF TEST_ORDERED('TestShortTime') THEN
+        GVL.timedfb_testshortTime := GVL.timedfb_testshortTime + 1;
+    fbTon(IN := TRUE); // Maximum time we will run the test
+    fbTimedFunctionBlock(bExecute := TRUE);
+    (* Check if we get a timeout or if we get the result we want *)
+    IF fbTon.Q OR fbTimedFunctionBlock.nValue = EXPECTED_RESULT THEN
+        AssertEquals_INT(Expected := EXPECTED_RESULT,
+                         Actual := fbTimedFunctionBlock.nValue,
+                         Message := 'Value not correct');
+        TEST_FINISHED();
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

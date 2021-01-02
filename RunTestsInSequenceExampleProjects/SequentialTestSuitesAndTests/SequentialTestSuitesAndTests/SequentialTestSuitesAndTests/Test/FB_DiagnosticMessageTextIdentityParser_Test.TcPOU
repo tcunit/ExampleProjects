@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_DiagnosticMessageTextIdentityParser_Test" Id="{afb9ef9f-55d7-44d9-bf09-c8e509ec2f03}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DiagnosticMessageTextIdentityParser_Test EXTENDS TcUnit.FB_TestSuite]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* The tests are run in the order that they are called. Asserts are not evaluated before the previous test has called TEST_FINISHED() *)
+WhenTextIdentityLowExpectTextIdentity0();
+WhenTextIdentityHighExpectTextIdentity65535();
+WhenTextIdentityMedExpectTextIdentity34500();]]></ST>
+    </Implementation>
+    <Method Name="WhenTextIdentityHighExpectTextIdentity65535" Id="{6ec38ca8-10ee-48ee-a072-1c11b09af03f}">
+      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityHighExpectTextIdentity65535
+VAR
+    fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
+    nTextIdentity : UINT;
+
+    // @TEST-FIXTURE TextIdentity#High
+    cnTextIdentityBufferByte1_IdentityHigh : BYTE := 16#FF; // 0xFFFF = 65535
+    cnTextIdentityBufferByte2_IdentityHigh : BYTE := 16#FF;
+    canTextIdentityBuffer_IdentityHigh : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityHigh,
+                                                                 cnTextIdentityBufferByte2_IdentityHigh];
+    // @TEST-RESULT TextIdentity#High
+    cnTextIdentity_IdentityHigh : UINT := 65535;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TEST_ORDERED('WhenTextIdentityHighExpectTextIdentity65535') THEN
+
+    // @TEST-RUN
+    fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityHigh,
+                                          nTextIdentity => nTextIdentity);
+    // @TEST-ASSERT
+    AssertEquals(Expected := cnTextIdentity_IdentityHigh,
+                 Actual := nTextIdentity,
+                 Message := 'Test $'TextIdentity#High$' failed');
+
+    TEST_FINISHED();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WhenTextIdentityLowExpectTextIdentity0" Id="{359c46b6-b5ed-4f8b-ac1d-acb9de5e4a01}">
+      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityLowExpectTextIdentity0
+VAR
+    fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
+    nTextIdentity : UINT;
+
+    // @TEST-FIXTURE TextIdentity#Low
+    cnTextIdentityBufferByte1_IdentityLow : BYTE := 16#00; // 0 = no text identity
+    cnTextIdentityBufferByte2_IdentityLow : BYTE := 16#00;
+    canTextIdentityBuffer_IdentityLow : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityLow,
+                                                                cnTextIdentityBufferByte2_IdentityLow];
+    // @TEST-RESULT TextIdentity#Low
+    cnTextIdentity_IdentityLow : UINT := 0;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TEST_ORDERED('WhenTextIdentityLowExpectTextIdentity0') THEN
+
+    // @TEST-RUN
+    fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityLow,
+                                          nTextIdentity => nTextIdentity);
+    // @TEST-ASSERT
+    AssertEquals(Expected := cnTextIdentity_IdentityLow,
+                 Actual := nTextIdentity,
+                Message := 'Test $'TextIdentity#Low$' failed');
+
+    TEST_FINISHED();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="WhenTextIdentityMedExpectTextIdentity34500" Id="{e7a45d67-1c10-4366-b59b-9b4a8c1fb6b5}">
+      <Declaration><![CDATA[METHOD PRIVATE WhenTextIdentityMedExpectTextIdentity34500
+VAR
+    fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
+    nTextIdentity : UINT;
+
+    // @TEST-FIXTURE TextIdentity#Med
+    cnTextIdentityBufferByte1_IdentityMed : BYTE := 16#C4; // 0x86C4 = 34500
+    cnTextIdentityBufferByte2_IdentityMed : BYTE := 16#86;
+    canTextIdentityBuffer_IdentityMed : ARRAY[1..2] OF BYTE := [cnTextIdentityBufferByte1_IdentityMed,
+                                                                cnTextIdentityBufferByte2_IdentityMed];
+    // @TEST-RESULT TextIdentity#Med
+    cnTextIdentity_IdentityMed : UINT := 34500;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF TEST_ORDERED('WhenTextIdentityMedExpectTextIdentity34500') THEN
+
+    // @TEST-RUN
+    fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := canTextIdentityBuffer_IdentityMed,
+                                          nTextIdentity => nTextIdentity);
+    // @TEST-ASSERT
+    AssertEquals(Expected := cnTextIdentity_IdentityMed,
+                 Actual := nTextIdentity,
+                 Message := 'Test $'TextIdentity#Med$' failed');
+
+    TEST_FINISHED();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

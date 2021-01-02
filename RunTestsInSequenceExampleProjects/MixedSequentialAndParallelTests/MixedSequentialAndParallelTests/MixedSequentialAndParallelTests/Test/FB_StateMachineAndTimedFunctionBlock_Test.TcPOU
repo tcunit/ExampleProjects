@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_StateMachineAndTimedFunctionBlock_Test" Id="{7f9ea4d5-a49b-41bd-ab92-de20172c5490}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_StateMachineAndTimedFunctionBlock_Test EXTENDS TcUnit.FB_TestSuite]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(* The tests are run in the order that they are called. Asserts are not evaluated before the previous test has called TEST_FINISHED() *)
+TestShortTime(); // This test will fail
+TestLongTime();
+TestVariant100();
+TestVariant50(); // This test runs in pararallel with the other four tests (which run in sequence)
+TestVariant20(); // This test will fail]]></ST>
+    </Implementation>
+    <Method Name="TestLongTime" Id="{db5072e5-9f9c-4ebf-968d-34aff742797d}">
+      <Declaration><![CDATA[METHOD PRIVATE TestLongTime
+(* We need to declare the FB_TimedFunctionBlock_Test as an instance variable,
+   as it needs to hold its values over several cycles *)
+VAR_INST
+    // Function block under test
+    fbTimedFunctionBlock : FB_TimedFunctionBlock;
+    fbTon : Tc2_Standard.TON := (PT := T#10S); // The maximum time we will run the test
+END_VAR
+VAR CONSTANT
+    EXPECTED_RESULT : INT := 100;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* Make sure to only run test logic if it's time for this test to execute *)
+IF TEST_ORDERED('TestLongTime') THEN
+    GVL.timedfb_testLongTime := GVL.timedfb_testLongTime + 1;
+    fbTon(IN := TRUE); // Maximum time we will run the test
+    fbTimedFunctionBlock(bExecute := TRUE);
+    (* Check if we get a timeout or if we get the result we want *)
+    IF fbTon.Q OR fbTimedFunctionBlock.nValue = EXPECTED_RESULT THEN
+        AssertEquals_INT(Expected := EXPECTED_RESULT,
+                         Actual := fbTimedFunctionBlock.nValue,
+                         Message := 'Value not correct');
+        TEST_FINISHED();
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestShortTime" Id="{49be05b7-c933-4123-b328-5d83f753263f}">
+      <Declaration><![CDATA[METHOD PRIVATE TestShortTime
+(* We need to declare the FB_TimedFunctionBlock_Test as an instance variable,
+   as it needs to hold its values over several cycles *)
+VAR_INST
+    // Function block under test
+    fbTimedFunctionBlock : FB_TimedFunctionBlock;
+    fbTon : Tc2_Standard.TON := (PT := T#2S); // The maximum time we will run the test
+END_VAR
+VAR CONSTANT
+    EXPECTED_RESULT : INT := 100;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* Make sure to only run test logic if it's time for this test to execute
+   Note that this test will fail, as we will not run it long enough to get the correct result! *)
+IF TEST_ORDERED('TestShortTime') THEN
+        GVL.timedfb_testshortTime := GVL.timedfb_testshortTime + 1;
+    fbTon(IN := TRUE); // Maximum time we will run the test
+    fbTimedFunctionBlock(bExecute := TRUE);
+    (* Check if we get a timeout or if we get the result we want *)
+    IF fbTon.Q OR fbTimedFunctionBlock.nValue = EXPECTED_RESULT THEN
+        AssertEquals_INT(Expected := EXPECTED_RESULT,
+                         Actual := fbTimedFunctionBlock.nValue,
+                         Message := 'Value not correct');
+        TEST_FINISHED();
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestVariant100" Id="{df519990-8579-43dd-a439-83ebc1902ac6}">
+      <Declaration><![CDATA[METHOD PRIVATE TestVariant100
+(* We need to declare the FB_StateMachineFunctionBlock as an instance variable,
+   as it needs to hold its values over several cycles *)
+VAR_INST
+    // Function block under test
+    fbStateMachineFunctionBlock : FB_StateMachineFunctionBlock;
+    fbTon : Tc2_Standard.TON := (PT := T#5S); // The maximum time we will run the test
+END_VAR
+VAR CONSTANT
+    EXPECTED_RESULT : INT := 100;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Make sure to only run test logic if it's time for this test to execute
+IF TEST_ORDERED('TestVariant100') THEN
+    GVL.statemachinefb_testvariant100 := GVL.statemachinefb_testvariant100 + 1;
+    fbTon(IN := TRUE); // Maximum time we will run the test
+    fbStateMachineFunctionBlock(bStart := TRUE, nVariant := 100);
+    (* Check if we get a timeout or if we get the result we want *)
+    IF fbTon.Q OR fbStateMachineFunctionBlock.nValue = EXPECTED_RESULT THEN
+        AssertEquals_INT(Expected := EXPECTED_RESULT,
+                         Actual := fbStateMachineFunctionBlock.nValue,
+                         Message := 'Value not correct');
+        TEST_FINISHED();
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestVariant20" Id="{14da0fd1-664d-4b28-9d5b-bdbfeeb37d33}">
+      <Declaration><![CDATA[METHOD PRIVATE TestVariant20
+(* We need to declare the FB_StateMachineFunctionBlock as an instance variable,
+   as it needs to hold its values over several cycles *)
+VAR_INST
+    // Function block under test
+    fbStateMachineFunctionBlock : FB_StateMachineFunctionBlock;
+    fbTon : Tc2_Standard.TON := (PT := T#1MS); // The maximum time we will run the test
+END_VAR
+VAR CONSTANT
+    EXPECTED_RESULT : INT := 100;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Make sure to only run test logic if it's time for this test to execute
+// Note that this test will fail, as we will not run it long enough to get the correct result! *)
+IF TEST_ORDERED('TestVariant20') THEN
+    GVL.statemachinefb_testvariant20 := GVL.statemachinefb_testvariant20 + 1;
+    fbTon(IN := TRUE); // Maximum time we will run the test
+    fbStateMachineFunctionBlock(bStart := TRUE, nVariant := 20);
+    (* Check if we get a timeout or if we get the result we want *)
+    IF fbTon.Q OR fbStateMachineFunctionBlock.nValue = EXPECTED_RESULT THEN
+        AssertEquals_INT(Expected := EXPECTED_RESULT,
+                         Actual := fbStateMachineFunctionBlock.nValue,
+                         Message := 'Value not correct');
+        TEST_FINISHED();
+	END_IF
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TestVariant50" Id="{4633c91b-e118-4bf8-9b56-546eb29fd63c}">
+      <Declaration><![CDATA[METHOD PRIVATE TestVariant50
+(* We need to declare the FB_StateMachineFunctionBlock as an instance variable,
+   as it needs to hold its values over several cycles *)
+VAR_INST
+    // Function block under test
+    fbStateMachineFunctionBlock : FB_StateMachineFunctionBlock;
+    fbTon : Tc2_Standard.TON := (PT := T#5S); // The maximum time we will run the test
+END_VAR
+VAR CONSTANT
+    EXPECTED_RESULT : INT := 200;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST('TestVariant50');
+GVL.statemachinefb_testvariant50 := GVL.statemachinefb_testvariant50 + 1;
+fbTon(IN := TRUE); // Maximum time we will run the test
+fbStateMachineFunctionBlock(bStart := TRUE, nVariant := 50);
+(* Check if we get a timeout or if we get the result we want *)
+IF fbTon.Q OR fbStateMachineFunctionBlock.nValue = EXPECTED_RESULT THEN
+    AssertEquals_INT(Expected := EXPECTED_RESULT,
+                     Actual := fbStateMachineFunctionBlock.nValue,
+                     Message := 'Value not correct');
+    TEST_FINISHED();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_DiagnosticMessageDiagnosticCodeParser" Id="{a4ef20b5-3c1c-4f6a-93de-13aa39a599b3}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+    This function block parses a the part "diagnostic code" of the diagnostic message according to the
+    ETG.1020 protocol enhancements.
+*)
+FUNCTION_BLOCK FB_DiagnosticMessageDiagnosticCodeParser
+VAR_INPUT
+    anDiagnosticCodeBuffer : ARRAY[1..4] OF BYTE;
+END_VAR
+VAR_OUTPUT
+    stDiagnosticCode : ST_DIAGNOSTICCODE;
+END_VAR
+VAR
+    nDiagnosisCodeType : WORD;
+    nDiagnosisCodeTypeLow : WORD;
+    nCode : WORD;
+    nCodeLow : WORD;
+END_VAR
+VAR CONSTANT
+    cnNotUsedOne_Low : WORD := 16#0000;
+    cnNotUsedOne_High : WORD := 16#DFFF;
+    cnManufacturerSpecific_Low : WORD := 16#E000;
+    cnManufacturerSpecific_High : WORD := 16#E7FF;
+    cnEmergencyErrorCodeDS301 : WORD := 16#E800;
+    cnReservedForFutureStandardization_Low : WORD := 16#E801;
+    cnReservedForFutureStandardization_High : WORD := 16#EDFF;
+    cnProfileSpecific_Low : WORD := 16#EE00;
+    cnProfileSpecific_High : WORD := 16#EFFF;
+    cnNotUsedTwo_Low : WORD := 16#F000;
+    cnNotUsedTwo_High : WORD := 16#FFFF;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[nDiagnosisCodeType := BYTE_TO_WORD(anDiagnosticCodeBuffer[2]);
+nDiagnosisCodeType := SHL(nDiagnosisCodeType, 8);
+nDiagnosisCodeTypeLow := BYTE_TO_WORD(anDiagnosticCodeBuffer[1]);
+nDiagnosisCodeType := nDiagnosisCodeType OR nDiagnosisCodeTypeLow;
+
+IF (nDiagnosisCodeType >= cnNotUsedOne_Low AND nDiagnosisCodeType <= cnNotUsedOne_High) OR
+   (nDiagnosisCodeType >= cnReservedForFutureStandardization_Low AND
+    nDiagnosisCodeType <= cnReservedForFutureStandardization_High) OR
+   (nDiagnosisCodeType >= cnNotUsedTwo_Low AND nDiagnosisCodeType <= cnNotUsedTwo_High) THEN
+   stDiagnosticCode.eDiagnosticCodeType := E_DIAGNOSTICCODETYPE.Unspecified;
+ELSIF nDiagnosisCodeType >= cnManufacturerSpecific_Low AND nDiagnosisCodeType <= cnManufacturerSpecific_High THEN
+    stDiagnosticCode.eDiagnosticCodeType := E_DIAGNOSTICCODETYPE.ManufacturerSpecific;
+ELSIF nDiagnosisCodeType = cnEmergencyErrorCodeDS301 THEN
+    stDiagnosticCode.eDiagnosticCodeType := E_DIAGNOSTICCODETYPE.EmergencyErrorCodeDS301;
+ELSIF nDiagnosisCodeType >= cnProfileSpecific_Low AND nDiagnosisCodeType <= cnProfileSpecific_High THEN
+    stDiagnosticCode.eDiagnosticCodeType := E_DIAGNOSTICCODETYPE.ProfileSpecific;
+END_IF
+
+nCode := BYTE_TO_WORD(anDiagnosticCodeBuffer[4]);
+nCode := SHL(nCode, 8);
+nCodeLow := BYTE_TO_WORD(anDiagnosticCodeBuffer[3]);
+nCode := nCode OR nCodeLow;
+
+stDiagnosticCode.nCode := WORD_TO_UINT(nCode);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

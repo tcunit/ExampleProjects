@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmItem" TcSmVersion="1.0" TcVersion="3.1.4022.32" ClassName="CNestedPlcProjDef">
+	<Project GUID="{DC8FA935-4248-4623-983B-A716FF320A32}" Name="SequentialTestSuitesAndTests" PrjFilePath="..\..\SequentialTestSuitesAndTests\SequentialTestSuitesAndTests.plcproj" TmcFilePath="..\..\SequentialTestSuitesAndTests\SequentialTestSuitesAndTests.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="SequentialTestSuitesAndTests\SequentialTestSuitesAndTests.tmc">
+			<Name>SequentialTestSuitesAndTests Instance</Name>
+			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<TaskPouOids>
+				<TaskPouOid Prio="20" OTCID="#x08502001"/>
+			</TaskPouOids>
+		</Instance>
+	</Project>
+</TcSmItem>

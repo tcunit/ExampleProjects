@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_DiagnosticMessageTimeStampParser" Id="{6610cd1d-fbd4-41d3-8c67-243e11279e2c}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+    This function block parses the timestamp. It's either the time stamp from the DC unit or the local time
+    stamp (defined as the start time of the task). The time will be the local time of DCs are not supported
+    or DC are only supported in 32 bit mode.
+    Reference: ETG.1020.
+*)
+FUNCTION_BLOCK FB_DiagnosticMessageTimeStampParser
+VAR_INPUT
+    anTimeStampBuffer : ARRAY[1..8] OF BYTE;
+    bIsLocalTime : BOOL;
+END_VAR
+VAR_OUTPUT
+    sTimeStamp : STRING(29);
+END_VAR
+VAR
+    nDCTime64 : LWORD;
+    nDCTime64HighPart : DWORD;
+    nDCTime64LowPart : DWORD;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[nDCTime64HighPart := F_DWORDFromBytes(B3 := anTimeStampBuffer[8], B2 := anTimeStampBuffer[7],
+                                      B1 := anTimeStampBuffer[6], B0 := anTimeStampBuffer[5]);
+nDCTime64LowPart := F_DWORDFromBytes(B3 := anTimeStampBuffer[4], B2 := anTimeStampBuffer[3],
+                                     B1 := anTimeStampBuffer[2], B0 := anTimeStampBuffer[1]);
+nDCTime64 := SHL(DWORD_TO_LWORD(nDCTime64HighPart), 32) OR nDCTime64LowPart;
+
+IF nDCTime64 = 0 THEN
+    nDCTime64 := F_GetCurDcTaskTime64();
+END_IF
+
+sTimeStamp := DCTIME64_TO_STRING(in := nDCTime64);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_DiagnosticMessageParser" Id="{d33c904e-e991-40fb-ad1d-3aad781c3d6c}" SpecialFunc="None">
+    <Declaration><![CDATA[(*
+    This function block parses a diagnostic message according to the ETG.1020 protocol enhancements.
+    First 16 data bytes are mandatory data, the remaining 12 data bytes are optional data (parameter 1..n).
+*)
+FUNCTION_BLOCK FB_DiagnosticMessageParser
+VAR_INPUT
+    anDiagnosticMessageBuffer : ARRAY[1..28] OF BYTE;
+END_VAR
+VAR_OUTPUT
+    stDiagnosticMessage : ST_DIAGNOSTICMESSAGE;
+END_VAR
+VAR
+    anDiagnosticCodeBuffer : ARRAY[1..4] OF BYTE;
+    anFlagsBuffer : ARRAY[1..2] OF BYTE;
+    anTextIdentityBuffer : ARRAY[1..2] OF BYTE;
+    anTimeStampBuffer : ARRAY[1..8] OF BYTE;
+    anIOLinkParametersBuffer : ARRAY[1..12] OF BYTE;
+
+    fbDiagnosticMessageDiagnosticCodeParser : FB_DiagnosticMessageDiagnosticCodeParser;
+    fbDiagnosticMessageFlagsParser : FB_DiagnosticMessageFlagsParser;
+    fbDiagnosticMessageTextIdentityParser : FB_DiagnosticMessageTextIdentityParser;
+    fbDiagnosticMessageTimeStampParser : FB_DiagnosticMessageTimeStampParser;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Parse diagnostic code
+anDiagnosticCodeBuffer[1] := anDiagnosticMessageBuffer[1];
+anDiagnosticCodeBuffer[2] := anDiagnosticMessageBuffer[2];
+anDiagnosticCodeBuffer[3] := anDiagnosticMessageBuffer[3];
+anDiagnosticCodeBuffer[4] := anDiagnosticMessageBuffer[4];
+fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := anDiagnosticCodeBuffer,
+                                        stDiagnosticCode => stDiagnosticMessage.stDiagnosticCode);
+
+// Parse flags
+anFlagsBuffer[1] := anDiagnosticMessageBuffer[5];
+anFlagsBuffer[2] := anDiagnosticMessageBuffer[6];
+fbDiagnosticMessageFlagsParser(anFlagsBuffer := anFlagsBuffer,
+                               stFlags => stDiagnosticMessage.stFlags);
+
+// Parse text identity
+anTextIdentityBuffer[1] := anDiagnosticMessageBuffer[7];
+anTextIdentityBuffer[2] := anDiagnosticMessageBuffer[8];
+fbDiagnosticMessageTextIdentityParser(anTextIdentityBuffer := anTextIdentityBuffer,
+                                      nTextIdentity => stDiagnosticMessage.nTextIdentityReferenceToESIFile);
+
+// Parse time stamp
+anTimeStampBuffer[1] := anDiagnosticMessageBuffer[9];
+anTimeStampBuffer[2] := anDiagnosticMessageBuffer[10];
+anTimeStampBuffer[3] := anDiagnosticMessageBuffer[11];
+anTimeStampBuffer[4] := anDiagnosticMessageBuffer[12];
+anTimeStampBuffer[5] := anDiagnosticMessageBuffer[13];
+anTimeStampBuffer[6] := anDiagnosticMessageBuffer[14];
+anTimeStampBuffer[7] := anDiagnosticMessageBuffer[15];
+anTimeStampBuffer[8] := anDiagnosticMessageBuffer[16];
+fbDiagnosticMessageTimeStampParser(anTimeStampBuffer := anTimeStampBuffer,
+                                   bIsLocalTime := (stDiagnosticMessage.stFlags.eTimeStampType = E_TIMESTAMPTYPE.Local),
+                                   sTimeStamp => stDiagnosticMessage.sTimeStamp);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
