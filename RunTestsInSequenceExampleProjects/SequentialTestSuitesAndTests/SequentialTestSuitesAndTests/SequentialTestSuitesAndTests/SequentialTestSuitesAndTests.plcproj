@@ -42,6 +42,10 @@
     <Compile Include="DUTs\ST_FLAGS.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GVLs\GVL.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -87,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
+    <Folder Include="GVLs" />
     <Folder Include="Test" />
     <Folder Include="POUs" />
   </ItemGroup>

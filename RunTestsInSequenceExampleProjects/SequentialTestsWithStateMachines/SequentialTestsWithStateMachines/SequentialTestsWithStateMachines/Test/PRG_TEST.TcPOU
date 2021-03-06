@@ -5,8 +5,8 @@
     This is the main program for execution of the unit tests.
     The program executes the test suites one after the other, with a delay of T#5S between
     each other (that is, as soon as one test suite has finished executing, the next
-    one starts to execute immediately after). This delay is defined in the call to
-    RUN_IN_SEQUENCE(T#5S).
+    one starts to execute after a 5 second delay). This delay is defined in the parameter
+    GVL_Param_TcUnit.TimeBetweenTestSuitesExecution.
     Within each test suite, the program executes each test one after the other, which
     is achieved by calling the TEST_ORDERED() for every test. The test-order is defined
     by the order of which the tests are being called.
@@ -18,7 +18,7 @@ VAR
     fbTimedFunctionBlock_Test : FB_TimedFunctionBlock_Test;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[TcUnit.RUN_IN_SEQUENCE(T#5S);]]></ST>
+      <ST><![CDATA[TcUnit.RUN_IN_SEQUENCE();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

@@ -27,6 +27,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters') THEN
+    GVL.fbDiagnosticMessageFlagsParser_Test_WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters := GVL.fbDiagnosticMessageFlagsParser_Test_WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN ErrorMessage
     fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_ErrorMessage,
@@ -65,6 +66,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters') THEN
+    GVL.fbDiagnosticMessageFlagsParser_Test_WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters := GVL.fbDiagnosticMessageFlagsParser_Test_WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN
     fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_InfoMessage,
@@ -103,6 +105,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters') THEN
+    GVL.fbDiagnosticMessageFlagsParser_Test_WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters := GVL.fbDiagnosticMessageFlagsParser_Test_WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN ReservedForFutureUseMessage
     fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_ReservedForFutureUseMessage,
@@ -141,6 +144,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters') THEN
+    GVL.fbDiagnosticMessageFlagsParser_Test_WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters := GVL.fbDiagnosticMessageFlagsParser_Test_WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN WarningMessage
     fbDiagnosticMessageFlagsParser(anFlagsBuffer := canFlagsBuffer_WarningMessage,

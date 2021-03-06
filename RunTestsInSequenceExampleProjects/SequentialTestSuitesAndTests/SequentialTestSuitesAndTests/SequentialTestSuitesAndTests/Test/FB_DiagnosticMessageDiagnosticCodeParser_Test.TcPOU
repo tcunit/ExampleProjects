@@ -32,7 +32,7 @@ VAR CONSTANT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('WhenEmergencyErrorCodeExpectEmergencyErrorCode') THEN
-
+    GVL.fbDiagnosticMessageDiagnosticCodeParser_Test_WhenEmergencyErrorCodeExpectEmergencyErrorCode := GVL.fbDiagnosticMessageDiagnosticCodeParser_Test_WhenEmergencyErrorCodeExpectEmergencyErrorCode + 1; // Only for testing the framework. Ignore this.
     // @TEST-RUN
     fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticCodeBuffer_EmergencyErrorCode,
                                             stDiagnosticCode => stDiagnosticCode);
@@ -72,7 +72,7 @@ VAR CONSTANT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('WhenManufacturerSpecificExpectManufacturerSpecific') THEN
-
+    GVL.fbDiagnosticMessageDiagnosticCodeParser_Test_WhenManufacturerSpecificExpectManufacturerSpecific := GVL.fbDiagnosticMessageDiagnosticCodeParser_Test_WhenManufacturerSpecificExpectManufacturerSpecific + 1; // Only for testing the framework. Ignore this.
     // @TEST-RUN
     fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticCodeBuffer_ManufacturerSpecific,
                                             stDiagnosticCode => stDiagnosticCode);
@@ -113,6 +113,7 @@ VAR CONSTANT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('WhenProfileSpecificExpectProfileSpecific') THEN
+    GVL.fbDiagnosticMessageDiagnosticCodeParser_Test_WhenProfileSpecificExpectProfileSpecific := GVL.fbDiagnosticMessageDiagnosticCodeParser_Test_WhenProfileSpecificExpectProfileSpecific + 1; // Only for testing the framework. Ignore this.
     // @TEST-RUN
     fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticCodeBuffer_ProfileSpecific,
                                             stDiagnosticCode => stDiagnosticCode);
@@ -153,6 +154,7 @@ VAR CONSTANT
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('WhenReservedForFutureUseExpectReservedForFutureUse') THEN
+    GVL.fbDiagnosticMessageDiagnosticCodeParser_Test_WhenReservedForFutureUseExpectReservedForFutureUse := GVL.fbDiagnosticMessageDiagnosticCodeParser_Test_WhenReservedForFutureUseExpectReservedForFutureUse + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN
     fbDiagnosticMessageDiagnosticCodeParser(anDiagnosticCodeBuffer := canDiagnosticCodeBuffer_ReservedForFutureUse,

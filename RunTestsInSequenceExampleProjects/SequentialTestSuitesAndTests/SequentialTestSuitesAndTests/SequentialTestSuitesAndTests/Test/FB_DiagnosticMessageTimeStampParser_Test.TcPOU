@@ -21,6 +21,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('TestWithTimestampZeroTimeExpectCurrentTime') THEN
+    GVL.fbDiagnosticMessageTimeStampParser_Test_TestWithTimestampZeroTimeExpectCurrentTime := GVL.fbDiagnosticMessageTimeStampParser_Test_TestWithTimestampZeroTimeExpectCurrentTime + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN
     fbDiagnosticMessageTimeStampParser(anTimeStampBuffer := canTimeStampBuffer_TimeStampZeroTime,
@@ -65,6 +66,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('TestWithValidTimestampExpectSameTimestamp') THEN
+    GVL.fbDiagnosticMessageTimeStampParser_Test_TestWithValidTimestampExpectSameTimestamp := GVL.fbDiagnosticMessageTimeStampParser_Test_TestWithValidTimestampExpectSameTimestamp + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN
     fbDiagnosticMessageTimeStampParser(anTimeStampBuffer := canTimeStampBuffer_TimeStampValidTime,
