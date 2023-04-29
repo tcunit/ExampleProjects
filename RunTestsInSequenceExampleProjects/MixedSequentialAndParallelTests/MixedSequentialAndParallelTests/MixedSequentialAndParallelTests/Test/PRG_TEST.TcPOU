@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="PRG_TEST" Id="{adfde850-4df1-47b0-9a75-b0eabf0a1998}" SpecialFunc="None">
     <Declaration><![CDATA[(*
     This example executes four tests in a sequence, and on top of this there is also one test

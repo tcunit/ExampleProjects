@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="PRG_TEST" Id="{01cac848-6a67-430a-a0cb-4e6885cf271a}" SpecialFunc="None">
     <Declaration><![CDATA[(*
     This is the main program for execution of the unit tests.

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33529.622
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{B1E792BE-AA5F-4E3C-8C82-674BF9C0715B}") = "MixedSequentialAndParallelTests", "MixedSequentialAndParallelTests\MixedSequentialAndParallelTests.tsproj", "{14DA46EF-4993-4DD3-8B4D-2DB7F8043969}"
 EndProject

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+<TcPlcObject Version="1.1.0.1">
   <POU Name="FB_StateMachineFunctionBlock" Id="{a4a8403e-6b86-4b5e-adfe-6d7fb59a2114}" SpecialFunc="None">
     <Declaration><![CDATA[(* This function block will return a value after a couple of cycle calls, and after setting bStart to TRUE.
    It will return the value 100 if nVariant is set to anything else than 50, and the value 200 if nVariant is set to 50 *)
