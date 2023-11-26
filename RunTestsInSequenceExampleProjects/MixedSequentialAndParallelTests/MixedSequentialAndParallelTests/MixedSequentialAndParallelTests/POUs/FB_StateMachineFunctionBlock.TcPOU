@@ -13,7 +13,7 @@ VAR_OUTPUT
 END_VAR
 VAR
     nState : INT;
-    bTrigger : Tc2_Standard.R_TRIG();
+    bTrigger : R_TRIG();
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[CASE nState OF
@@ -26,7 +26,7 @@ END_VAR]]></Declaration>
     1 :
         nValue := 0; // Reset output value
         nState := 2;
-    
+
     2 :
         IF nVariant = 50 THEN
             nState := 20;
@@ -34,7 +34,7 @@ END_VAR]]></Declaration>
             nState := 10;
 		END_IF
 
-    10 : 
+    10 :
         nValue := 100;
         nState := 0;
 

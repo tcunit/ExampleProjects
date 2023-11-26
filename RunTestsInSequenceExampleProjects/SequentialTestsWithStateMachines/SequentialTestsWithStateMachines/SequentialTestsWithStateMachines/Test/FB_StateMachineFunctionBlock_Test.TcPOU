@@ -15,7 +15,7 @@ TestVariant20(); // This test will fail]]></ST>
 VAR_INST
     // Function block under test
     fbStateMachineFunctionBlock : FB_StateMachineFunctionBlock;
-    fbTon : Tc2_Standard.TON := (PT := T#5S); // The maximum time we will run the test
+    fbTon : TON := (PT := T#5S); // The maximum time we will run the test
 END_VAR
 VAR CONSTANT
     EXPECTED_RESULT : INT := 100;
@@ -23,7 +23,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Make sure to only run test logic if it's time for this test to execute
 IF TEST_ORDERED('TestVariant100') THEN
-    GVL.statemachinefb_testvariant100 := GVL.statemachinefb_testvariant100 + 1; // Only for testing the framework. Ignore this.
+    GVL.nStateMachineFunctionBlockTestVariant100 := GVL.nStateMachineFunctionBlockTestVariant100 + 1; // Only for testing the framework. Ignore this.
     fbTon(IN := TRUE); // Maximum time we will run the test
     fbStateMachineFunctionBlock(bStart := TRUE, nVariant := 100);
     (* Check if we get a timeout or if we get the result we want *)
@@ -43,7 +43,7 @@ END_IF]]></ST>
 VAR_INST
     // Function block under test
     fbStateMachineFunctionBlock : FB_StateMachineFunctionBlock;
-    fbTon : Tc2_Standard.TON := (PT := T#1MS); // The maximum time we will run the test
+    fbTon : TON := (PT := T#1MS); // The maximum time we will run the test
 END_VAR
 VAR CONSTANT
     EXPECTED_RESULT : INT := 100;
@@ -52,7 +52,7 @@ END_VAR]]></Declaration>
         <ST><![CDATA[// Make sure to only run test logic if it's time for this test to execute
 // Note that this test will fail, as we will not run it long enough to get the correct result! *)
 IF TEST_ORDERED('TestVariant20') THEN
-    GVL.statemachinefb_testvariant20 := GVL.statemachinefb_testvariant20 + 1; // Only for testing the framework. Ignore this.
+    GVL.nStateMachineFunctionBlockTestVariant20 := GVL.nStateMachineFunctionBlockTestVariant20 + 1; // Only for testing the framework. Ignore this.
     fbTon(IN := TRUE); // Maximum time we will run the test
     fbStateMachineFunctionBlock(bStart := TRUE, nVariant := 20);
     (* Check if we get a timeout or if we get the result we want *)
@@ -72,7 +72,7 @@ END_IF]]></ST>
 VAR_INST
     // Function block under test
     fbStateMachineFunctionBlock : FB_StateMachineFunctionBlock;
-    fbTon : Tc2_Standard.TON := (PT := T#5S); // The maximum time we will run the test
+    fbTon : TON := (PT := T#5S); // The maximum time we will run the test
 END_VAR
 VAR CONSTANT
     EXPECTED_RESULT : INT := 200;
@@ -80,7 +80,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Make sure to only run test logic if it's time for this test to execute
 IF TEST_ORDERED('TestVariant50') THEN
-    GVL.statemachinefb_testvariant50 := GVL.statemachinefb_testvariant50 + 1; // Only for testing the framework. Ignore this.
+    GVL.nStateMachineFunctionBlockTestVariant50 := GVL.nStateMachineFunctionBlockTestVariant50 + 1; // Only for testing the framework. Ignore this.
     fbTon(IN := TRUE); // Maximum time we will run the test
     fbStateMachineFunctionBlock(bStart := TRUE, nVariant := 50);
     (* Check if we get a timeout or if we get the result we want *)

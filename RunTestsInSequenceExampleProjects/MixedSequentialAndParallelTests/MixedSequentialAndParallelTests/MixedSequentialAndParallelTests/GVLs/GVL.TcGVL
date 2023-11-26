@@ -2,12 +2,13 @@
 <TcPlcObject Version="1.1.0.1">
   <GVL Name="GVL" Id="{f215fd48-1cb0-4b73-9578-03c6a30e1dbf}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
+// These variables only exist to test the TcUnit framework. You can ignore them.
 VAR_GLOBAL
-    timedfb_testshortTime : ULINT;
-    timedfb_testLongTime : ULINT;
-    statemachinefb_testvariant100 : ULINT;
-    statemachinefb_testvariant50 : ULINT;
-    statemachinefb_testvariant20 : ULINT;
+    nTimedFunctionBlockTestShortTime : ULINT;
+    nTimedFunctionBlockTestLongTime : ULINT;
+    nStateMachineFunctionBlockTestVariant100 : ULINT;
+    nStateMachineFunctionBlockTestVariant50 : ULINT;
+    nStateMachineFunctionBlockTestVariant20 : ULINT;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

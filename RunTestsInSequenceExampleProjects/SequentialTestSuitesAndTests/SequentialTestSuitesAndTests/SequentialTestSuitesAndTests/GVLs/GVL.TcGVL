@@ -2,28 +2,29 @@
 <TcPlcObject Version="1.1.0.1">
   <GVL Name="GVL" Id="{2ee23b30-e6fe-4c1b-b0ea-d35d6a0d8c22}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
+// These variables only exist to test the TcUnit framework. You can ignore them.
 VAR_GLOBAL
-    fbDiagnosticMessageDiagnosticCodeParser_Test_WhenEmergencyErrorCodeExpectEmergencyErrorCode : ULINT;
-    fbDiagnosticMessageDiagnosticCodeParser_Test_WhenManufacturerSpecificExpectManufacturerSpecific : ULINT;
-    fbDiagnosticMessageDiagnosticCodeParser_Test_WhenProfileSpecificExpectProfileSpecific : ULINT;
-    fbDiagnosticMessageDiagnosticCodeParser_Test_WhenReservedForFutureUseExpectReservedForFutureUse : ULINT;
+    nDiagnosticMessageDiagnosticCodeParserTest_WhenEmergencyErrorCodeExpectEmergencyErrorCode : ULINT;
+    nDiagnosticMessageDiagnosticCodeParserTest_WhenManufacturerSpecificExpectManufacturerSpecific : ULINT;
+    nDiagnosticMessageDiagnosticCodeParserTest_WhenProfileSpecificExpectProfileSpecific : ULINT;
+    nDiagnosticMessageDiagnosticCodeParserTest_WhenReservedForFutureUseExpectReservedForFutureUse : ULINT;
 
-    fbDiagnosticMessageFlagsParser_Test_WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters : ULINT;
-    fbDiagnosticMessageFlagsParser_Test_WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters : ULINT;
-    fbDiagnosticMessageFlagsParser_Test_WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters : ULINT;
-    fbDiagnosticMessageFlagsParser_Test_WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters : ULINT;    
+    nDiagnosticMessageFlagsParserTest_WhenInfoMessageExpectInfoMessageGlobalTimestampAndZeroParameters : ULINT;
+    nDiagnosticMessageFlagsParserTest_WhenWarningMessageExpectWarningMessageLocalTimestampAndTwoParameters : ULINT;
+    nDiagnosticMessageFlagsParserTest_WhenErrorMessageExpectErrorMessageLocalTimestampAndFourParameters : ULINT;
+    nDiagnosticMessageFlagsParserTest_WhenReservedForFutureUseMessageExpectReservedForFutureUseMessageLocalTimestampAnd33Parameters : ULINT;
 
-    fbDiagnosticMessageParser_Test_TestWithEmergencyMessage : ULINT;
-    fbDiagnosticMessageParser_Test_TestWithManufacturerSpecificMessage : ULINT;
-    fbDiagnosticMessageParser_Test_TestWithUnspecifiedMessageMessage : ULINT;
-    fbDiagnosticMessageParser_Test_TestWithUnspecifiedMessageMessage_ParameterVariant : ULINT;
+    nDiagnosticMessageParserTest_TestWithEmergencyMessage : ULINT;
+    nDiagnosticMessageParserTest_TestWithManufacturerSpecificMessage : ULINT;
+    nDiagnosticMessageParserTest_TestWithUnspecifiedMessageMessage : ULINT;
+    nDiagnosticMessageParserTest_TestWithUnspecifiedMessageMessage_ParameterVariant : ULINT;
 
-    fbDiagnosticMessageTextIdentityParser_Test_WhenTextIdentityLowExpectTextIdentity0 : ULINT;
-    fbDiagnosticMessageTextIdentityParser_Test_WhenTextIdentityHighExpectTextIdentity65535 : ULINT;
-    fbDiagnosticMessageTextIdentityParser_Test_WhenTextIdentityMedExpectTextIdentity34500 : ULINT;
+    nDiagnosticMessageTextIdentityParserTest_WhenTextIdentityLowExpectTextIdentity0 : ULINT;
+    nDiagnosticMessageTextIdentityParserTest_WhenTextIdentityHighExpectTextIdentity65535 : ULINT;
+    nDiagnosticMessageTextIdentityParserTest_WhenTextIdentityMedExpectTextIdentity34500 : ULINT;
 
-    fbDiagnosticMessageTimeStampParser_Test_TestWithTimestampZeroTimeExpectCurrentTime : ULINT;
-    fbDiagnosticMessageTimeStampParser_Test_TestWithValidTimestampExpectSameTimestamp : ULINT;
+    nDiagnosticMessageTimeStampParserTest_TestWithTimestampZeroTimeExpectCurrentTime : ULINT;
+    nDiagnosticMessageTimeStampParserTest_TestWithValidTimestampExpectSameTimestamp : ULINT;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

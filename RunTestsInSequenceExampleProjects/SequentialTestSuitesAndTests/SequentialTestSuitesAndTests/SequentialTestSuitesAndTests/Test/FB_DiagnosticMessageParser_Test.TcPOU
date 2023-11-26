@@ -71,7 +71,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('TestWithEmergencyMessage') THEN
-    GVL.fbDiagnosticMessageParser_Test_TestWithEmergencyMessage := GVL.fbDiagnosticMessageParser_Test_TestWithEmergencyMessage + 1; // Only for testing the framework. Ignore this.
+    GVL.nDiagnosticMessageParserTest_TestWithEmergencyMessage := GVL.nDiagnosticMessageParserTest_TestWithEmergencyMessage + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN
     stDiagnosticMessage_EmergencyMessage.sTimeStamp := DCTIME64_TO_STRING(in := F_GetCurDcTaskTime64());
@@ -183,7 +183,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('TestWithManufacturerSpecificMessage') THEN
-    GVL.fbDiagnosticMessageParser_Test_TestWithManufacturerSpecificMessage := GVL.fbDiagnosticMessageParser_Test_TestWithManufacturerSpecificMessage + 1; // Only for testing the framework. Ignore this.
+    GVL.nDiagnosticMessageParserTest_TestWithManufacturerSpecificMessage := GVL.nDiagnosticMessageParserTest_TestWithManufacturerSpecificMessage + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN
     fbDiagnosticMessageParser(anDiagnosticMessageBuffer := canDiagnosticBuffer_ManufacturerSpecificMessage,
@@ -293,7 +293,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('TestWithUnspecifiedMessageMessage') THEN
-    GVL.fbDiagnosticMessageParser_Test_TestWithUnspecifiedMessageMessage := GVL.fbDiagnosticMessageParser_Test_TestWithUnspecifiedMessageMessage + 1; // Only for testing the framework. Ignore this.
+    GVL.nDiagnosticMessageParserTest_TestWithUnspecifiedMessageMessage := GVL.nDiagnosticMessageParserTest_TestWithUnspecifiedMessageMessage + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN
     fbDiagnosticMessageParser(anDiagnosticMessageBuffer := canDiagnosticBuffer_UnspecifiedMessage,
@@ -403,7 +403,7 @@ VAR
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF TEST_ORDERED('TestWithUnspecifiedMessageMessage_ParameterVariant') THEN
-    GVL.fbDiagnosticMessageParser_Test_TestWithUnspecifiedMessageMessage_ParameterVariant := GVL.fbDiagnosticMessageParser_Test_TestWithUnspecifiedMessageMessage_ParameterVariant + 1; // Only for testing the framework. Ignore this.
+    GVL.nDiagnosticMessageParserTest_TestWithUnspecifiedMessageMessage_ParameterVariant := GVL.nDiagnosticMessageParserTest_TestWithUnspecifiedMessageMessage_ParameterVariant + 1; // Only for testing the framework. Ignore this.
 
     // @TEST-RUN
     fbDiagnosticMessageParser(anDiagnosticMessageBuffer := canDiagnosticBuffer_UnspecifiedMessage_ParameterVariant,

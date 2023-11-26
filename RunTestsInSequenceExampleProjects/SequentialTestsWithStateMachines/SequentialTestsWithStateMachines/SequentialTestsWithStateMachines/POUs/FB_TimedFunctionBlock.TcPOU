@@ -10,7 +10,7 @@ VAR_OUTPUT
     nValue : INT;
 END_VAR
 VAR
-    fbTimer : Tc2_Standard.TON := (PT := T#5S);
+    fbTimer : TON := (PT := T#5S);
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbTimer(IN := bExecute); // Start timer on high trigger, reset timer on low
